@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('historial_evento', function (Blueprint $table) {
-            $table->id();
+            $table->string('cod_evento');
+            $table->dateTime('fecha_evento');
+            $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

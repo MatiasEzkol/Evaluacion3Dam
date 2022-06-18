@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('educadora', function (Blueprint $table) {
-            $table->id();
+            $table->string('cod_educadora');
+            $table -> string('nombre_educadora');
+            $table -> string('apellido_educadora');
+            $table -> dateTime('fecha_nacimiento');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
