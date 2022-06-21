@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nom_nino');
             $table ->string('apell_nino');
             $table ->string('foto_nino');
-            $table->dateTime('fecha_nacimiento');
+            $table->dateTime('fecha_nac_nino');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\database\eloquent\SoftDeletes;
 
-class HistorialEvento extends Model
+class Evento extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'historial_evento';
+    protected $table = 'evento';
     protected $primaryKey= 'cod_evento';
     public $incrementing= 'false';
     protected $keyType= 'string';

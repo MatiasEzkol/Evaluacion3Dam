@@ -28,9 +28,9 @@ class EducadoraController extends Controller
     {
         $educadora = new Educadora();
         $educadora->cod_educadora = $request->cod_educadora;
-        $educadora->nombre_educadora = $request->nombre_educadora;
-        $educadora->apellido_educadora = $request->apellido_educadora;
-        $educadora->fecha_nacimiento = $request->fecha_nacimiento;
+        $educadora->nom_educadora = $request->nom_educadora;
+        $educadora->apell_educadora = $request->apell_educadora;
+        $educadora->fecha_nac_educadora = $request->fecha_nac_educadora;
         // $educadora->nivel_id = $request->nivel_id;
         $educadora->save();
     }
@@ -56,9 +56,9 @@ class EducadoraController extends Controller
     public function update(Request $request, Educadora $educadora)
     {
         $educadora->cod_educadora = $request->cod_educadora;
-        $educadora->nombre_educadora = $request->nombre_educadora;
-        $educadora->apellido_educadora = $request->apellido_educadora;
-        $educadora->fecha_nacimiento = $request->fecha_nacimiento;
+        $educadora->nom_educadora = $request->nom_educadora;
+        $educadora->apell_educadora = $request->apell_educadora;
+        $educadora->fecha_nac_educadora = $request->fecha_nac_educadora;
         // $educadora->nivel_id = $request->nivel_id;
         $educadora->save();
         return $educadora;

@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('historial_evento', function (Blueprint $table) {
+        Schema::create('evento', function (Blueprint $table) {
             $table->string('cod_evento');
-            $table->dateTime('fecha_evento');
-            $table->string('descripcion');
+            $table->string('descripcion_evento');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historial_evento');
+        Schema::dropIfExists('evento');
     }
 };
