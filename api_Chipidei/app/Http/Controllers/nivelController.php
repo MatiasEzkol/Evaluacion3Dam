@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 
 class NivelController extends Controller
@@ -13,7 +14,7 @@ class NivelController extends Controller
      */
     public function index()
     {
-        //
+        return Nivel::all();
     }
 
     /**
@@ -24,40 +25,46 @@ class NivelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nivel = new Nivel();
+        $nivel->cod_nivel = $request->cod_nivel;
+        $nivel->nom_nivel = $request->nom_nivel;
+        $nivel->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Nivel $nivel
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Nivel $nivel)
     {
-        //
+        return $nivel;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Nivel $nivel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Nivel $nivel)
     {
-        //
+        $nivel->cod_nivel = $request->cod_nivel;
+        $nivel->nom_nivel = $request->nom_nivel;
+        $nivel->save();
+        return $nivel;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Nivel $nivel
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Nivel $nivel)
     {
-        //
+        $nivel->delete();
     }
 }
