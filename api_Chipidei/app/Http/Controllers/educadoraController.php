@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Educadora;
 use Illuminate\Http\Request;
+use App\Http\Requests\EducadoraRequest;
 
 class EducadoraController extends Controller
 {
