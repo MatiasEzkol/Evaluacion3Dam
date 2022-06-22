@@ -14,7 +14,7 @@ class Evento extends Model
     public $incrementing= 'false';
     protected $keyType= 'string';
 
-    // public function nino(){
-    //     return $this->belongsTo(nino::class);
-    // }
+    public function nino(){
+        return $this->belongsTo(nino::class);
+    }
 }

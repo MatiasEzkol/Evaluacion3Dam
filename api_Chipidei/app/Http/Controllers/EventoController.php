@@ -29,6 +29,7 @@ class EventoController extends Controller
         $evento = new Evento();
         $evento->cod_evento = $request->cod_evento;
         $evento->descripcion_evento = $request->descripcion_evento;
+        $evento->evento_nino = $request->evento_nino;
         $evento->save();
     }
 
@@ -54,6 +55,7 @@ class EventoController extends Controller
     {
         $evento->cod_evento = $request->cod_evento;
         $evento->descripcion_evento = $request->descripcion_evento;
+        $evento->evento_nino = $request->evento_nino;
         $evento->save();
         return $evento;
     }

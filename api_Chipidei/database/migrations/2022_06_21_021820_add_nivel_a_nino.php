@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nino', function (Blueprint $table) {
-            $table->string('cod_nino')->primary();
-            $table->string('nom_nino');
-            $table ->string('apell_nino');
-            $table ->string('foto_nino');
-            $table->dateTime('fecha_nac_nino');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('nino', function (Blueprint $table) {
+            $table->string('nino_nivel');
+            $table->foreign('nino_nivel')->references('cod_nivel')->on('nivel');
         });
     }
 
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nino');
+        Schema::table('nino', function (Blueprint $table) {
+            //
+        });
     }
 };

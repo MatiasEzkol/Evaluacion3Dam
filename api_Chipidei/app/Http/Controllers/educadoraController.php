@@ -32,7 +32,7 @@ class EducadoraController extends Controller
         $educadora->nom_educadora = $request->nom_educadora;
         $educadora->apell_educadora = $request->apell_educadora;
         $educadora->fecha_nac_educadora = $request->fecha_nac_educadora;
-        // $educadora->nivel_id = $request->nivel_id;
+        $educadora->nivel_educadora = $request->nivel_educadora;
         $educadora->save();
     }
 
@@ -60,7 +60,7 @@ class EducadoraController extends Controller
         $educadora->nom_educadora = $request->nom_educadora;
         $educadora->apell_educadora = $request->apell_educadora;
         $educadora->fecha_nac_educadora = $request->fecha_nac_educadora;
-        // $educadora->nivel_id = $request->nivel_id;
+        $educadora->nivel_educadora = $request->nivel_educadora;
         $educadora->save();
         return $educadora;
     }

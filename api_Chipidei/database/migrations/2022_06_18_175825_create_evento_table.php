@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('evento', function (Blueprint $table) {
-            $table->string('cod_evento');
+            $table->string('cod_evento')->primary();
             $table->string('descripcion_evento');
             $table->timestamps();
             $table->softDeletes();

@@ -14,7 +14,7 @@ class Nino extends Model
     public $incrementing= 'false';
     protected $keyType= 'string';
 
-    // public function nivel(){
-    //     return $this->belongsTo(nivel::class);
-    // }
+    public function nivel(){
+        return $this->belongsTo(nivel::class);
+    }
 }

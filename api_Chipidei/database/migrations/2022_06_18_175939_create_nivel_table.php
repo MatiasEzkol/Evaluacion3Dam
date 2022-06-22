@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('nivel', function (Blueprint $table) {
-            $table->string('cod_nivel');
+            $table->string('cod_nivel')->primary();
             $table->string('nom_nivel');
             $table->timestamps();
             $table->softDeletes();
