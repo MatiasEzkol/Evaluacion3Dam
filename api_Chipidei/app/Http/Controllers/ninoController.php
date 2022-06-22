@@ -32,7 +32,7 @@ class NinoController extends Controller
         $nino->apell_nino = $request->apell_nino;
         $nino->foto_nino = $request->foto_nino;
         $nino->fecha_nac_nino = $request->fecha_nac_nino;
-        $nino->nino_nivel = $request->nino_nivel;
+        $nino->nivel = $request->nivel;
         $nino->save();
     }
 
@@ -61,7 +61,7 @@ class NinoController extends Controller
         $nino->apell_nino = $request->apell_nino;
         $nino->foto_nino = $request->foto_nino;
         $nino->fecha_nac_nino = $request->fecha_nac_nino;
-        $nino->nino_nivel = $request->nino_nivel;
+        $nino->nivel = $request->nivel;
         $nino->save();
         return $nino;
     }

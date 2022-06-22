@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('evento', function (Blueprint $table) { 
-            $table->string('evento_nino');
-            $table->foreign('evento_nino')->references('cod_nino')->on('nino');
+            $table->string('nino');
+            $table->foreign('nino')->references('cod_nino')->on('nino');
         });
     }
 
