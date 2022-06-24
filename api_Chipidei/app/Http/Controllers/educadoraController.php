@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Educadora;
 use Illuminate\Http\Request;
-use App\Http\Requests\EducadoraRequest;
+use App\Http\Requests\EducadorasRequest;
 
 class EducadoraController extends Controller
 {
@@ -25,7 +25,7 @@ class EducadoraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EducadorasRequest $request)
     {
         $educadora = new Educadora();
         $educadora->cod_educadora = $request->cod_educadora;
@@ -54,7 +54,7 @@ class EducadoraController extends Controller
      * @param  \App\Models\Educadora $educadora
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Educadora $educadora)
+    public function update(EducadorasRequest $request, Educadora $educadora)
     {
         $educadora->cod_educadora = $request->cod_educadora;
         $educadora->nom_educadora = $request->nom_educadora;
