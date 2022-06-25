@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nino;
 use Illuminate\Http\Request;
-use App\Http\Requests\NinoRequest;
+use App\Http\Requests\NinosRequest;
 
 class NinoController extends Controller
 {
@@ -24,7 +24,7 @@ class NinoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NinosRequest $request)
     {
         $nino = new Nino();
         $nino->cod_nino = $request->cod_nino;
@@ -54,7 +54,7 @@ class NinoController extends Controller
      * @param  \App\Models\Nino $nino
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nino $nino)
+    public function update(NinosRequest $request, Nino $nino)
     {
         $nino->cod_nino = $request->cod_nino;
         $nino->nom_nino = $request->nom_nino;
