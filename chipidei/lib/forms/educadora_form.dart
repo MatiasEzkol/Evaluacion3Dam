@@ -74,30 +74,24 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
                         nombreCtrl.text.trim(),
                         apellidoCtrl.text.trim(),
                         fechaCtrl.text.trim());
-                    //codigoCtrl.text.trim(),
-                    //nombreCtrl.text.trim(),
 
                     if (respuesta['message'] != null) {
-                      //cod_producto
+                      //cod
                       if (respuesta['errors']['cod_educadora'] != null) {
                         errCodigo = respuesta['errors']['cod_educadora'][0];
                       }
-
                       //nombre
                       if (respuesta['errors']['nombre_educadora'] != null) {
                         errNombre = respuesta['errors']['nombre_educadora'][0];
                       }
-
                       //apellido
                       if (respuesta['errors']['apellido_educadora'] != null) {
                         errApellido =
                             respuesta['errors']['apellido_educadora'][0];
                       }
-
                       setState(() {});
                       return;
                     }
-
                     Navigator.pop(context);
                   },
                 ),
