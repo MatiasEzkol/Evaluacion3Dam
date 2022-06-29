@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:chipidei/providers/eventos_providers.dart';
 import 'package:chipidei/utils/confirmDialog.dart';
 import 'package:chipidei/utils/showSnackBar.dart';
@@ -74,20 +73,23 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     String cod_evento = evento['cod_evento'];
-                                    confirmDialog(this.context,'evento',
+                                    confirmDialog(this.context, 'evento',
                                             evento['descripcion_evento'])
                                         .then((confirma) {
                                       if (confirma) {
                                         EventosProviders()
-                                            .borrarEvento(cod_evento)
+                                            .eventoBorrar(cod_evento)
                                             .then((borradoOk) {
                                           if (borradoOk) {
                                             snap.data.removeAt(index);
                                             //set
-                                            showSnackBar('Evento borrado',this.context);
+                                            showSnackBar(
+                                                'Evento borrado', this.context);
                                             setState(() {});
                                           } else {
-                                            showSnackBar('No se pudo borrar evento',this.context);
+                                            showSnackBar(
+                                                'No se pudo borrar evento',
+                                                this.context);
                                           }
                                         });
                                       }
@@ -107,5 +109,5 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
             ],
           ),
         ));
-  }  
+  }
 }

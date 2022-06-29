@@ -55,7 +55,7 @@ class _ListaEduPageState extends State<ListaEduPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     MaterialPageRoute route = MaterialPageRoute(
-                                      builder: (context) => PerfilEduPage(),
+                                      builder: (context) => PerfilEduPage(educadora['cod_educadora']),
                                     );
                                     Navigator.push(context, route)
                                         .then((value) {
