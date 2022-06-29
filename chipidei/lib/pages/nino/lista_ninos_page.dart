@@ -3,9 +3,12 @@ import 'dart:developer';
 
 import 'package:chipidei/pages/nino/perfil_nino_page.dart';
 import 'package:chipidei/providers/ninos_providers.dart';
+import 'package:chipidei/utils/confirmDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../../utils/showSnackBar.dart';
 
 class ListaNinosPage extends StatefulWidget {
   // ListaNinosPage({Key? key}) : super(key: key);
@@ -72,7 +75,7 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     String cod_nino = nino['cod_nino'];
-                                    confirmDialog(context, nino['nom_nino'])
+                                    confirmDialog(context,'niño', nino['nom_nino'])
                                         .then((confirma) {
                                       if (confirma) {
                                         NinosProvider()
@@ -81,11 +84,10 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
                                           if (borradoOk) {
                                             snap.data.removeAt(index);
                                             //set
-                                            showSnackBar('Niño borrado');
+                                            showSnackBar('Niño borrado',this.context);
                                             setState(() {});
                                           } else {
-                                            showSnackBar(
-                                                'No se pudo borrar niño');
+                                            showSnackBar('No se pudo borrar niño',this.context);
                                           }
                                         });
                                       }
@@ -105,32 +107,5 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
             ],
           ),
         ));
-  }
-
-  void showSnackBar(String mensaje) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(mensaje),
-      duration: Duration(seconds: 2),
-    ));
-  }
-
-  Future<dynamic> confirmDialog(BuildContext context, String nino) {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Confirma borrado'),
-            content: Text('Seguro que quiere borrar a nino $nino?'),
-            actions: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: Text('Cancelar')),
-              ElevatedButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: Text('Aceptar'))
-            ],
-          );
-        });
   }
 }

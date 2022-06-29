@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:chipidei/providers/niveles_providers.dart';
+import 'package:chipidei/utils/confirmDialog.dart';
+import 'package:chipidei/utils/showSnackBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -69,7 +71,7 @@ class _ListaNivelesPageState extends State<ListaNivelesPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     String cod_nivel = nivel['cod_nivel'];
-                                    confirmDialog(context, nivel['nom_nivel'])
+                                    confirmDialog(context,'nivel', nivel['nom_nivel'])
                                         .then((confirma) {
                                       if (confirma) {
                                         NivelesProvider()
@@ -78,11 +80,10 @@ class _ListaNivelesPageState extends State<ListaNivelesPage> {
                                           if (borradoOk) {
                                             snap.data.removeAt(index);
                                             //set
-                                            showSnackBar('Nivel borrado');
+                                            showSnackBar('Nivel borrado',this.context);
                                             setState(() {});
                                           } else {
-                                            showSnackBar(
-                                                'No se pudo borrar nivel');
+                                            showSnackBar('No se pudo borrar nivel',this.context);
                                           }
                                         });
                                       }
@@ -102,32 +103,5 @@ class _ListaNivelesPageState extends State<ListaNivelesPage> {
             ],
           ),
         ));
-  }
-
-  void showSnackBar(String mensaje) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(mensaje),
-      duration: Duration(seconds: 2),
-    ));
-  }
-
-  Future<dynamic> confirmDialog(BuildContext context, String nivel) {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Confirma borrado'),
-            content: Text('Seguro que quiere borrar a nivel $nivel?'),
-            actions: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: Text('Cancelar')),
-              ElevatedButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: Text('Aceptar'))
-            ],
-          );
-        });
   }
 }

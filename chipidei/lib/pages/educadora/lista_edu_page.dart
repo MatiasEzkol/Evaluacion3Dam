@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../utils/confirmDialog.dart';
+import '../../utils/showSnackBar.dart';
+
 class ListaEduPage extends StatefulWidget {
   ListaEduPage({Key? key}) : super(key: key);
 
@@ -73,7 +76,7 @@ class _ListaEduPageState extends State<ListaEduPage> {
                                     String cod_educadora =
                                         educadora['cod_educadora'];
                                     confirmDialog(
-                                            context, educadora['nom_educadora'])
+                                            context,'educadora', educadora['nom_educadora'])
                                         .then((confirma) {
                                       if (confirma) {
                                         EducadorasProvider()
@@ -82,11 +85,10 @@ class _ListaEduPageState extends State<ListaEduPage> {
                                           if (borradoOk) {
                                             snap.data.removeAt(index);
                                             //set
-                                            showSnackBar('Educadora borrada');
+                                            showSnackBar('Educadora borrada',this.context);
                                             setState(() {});
                                           } else {
-                                            showSnackBar(
-                                                'No se pudo borrar educadora');
+                                            showSnackBar('No se pudo borrar educadora',this.context);
                                           }
                                         });
                                       }
@@ -106,32 +108,5 @@ class _ListaEduPageState extends State<ListaEduPage> {
             ],
           ),
         ));
-  }
-
-  void showSnackBar(String mensaje) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(mensaje),
-      duration: Duration(seconds: 2),
-    ));
-  }
-
-  Future<dynamic> confirmDialog(BuildContext context, String educadora) {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Confirma borrado'),
-            content: Text('Seguro que quiere borrar a educadora $educadora?'),
-            actions: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: Text('Cancelar')),
-              ElevatedButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: Text('Aceptar'))
-            ],
-          );
-        });
   }
 }
