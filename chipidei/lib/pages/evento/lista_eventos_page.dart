@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:chipidei/providers/eventos_providers.dart';
+import 'package:chipidei/providers/evento_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
