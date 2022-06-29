@@ -5,6 +5,9 @@ import 'package:chipidei/pages/evento/lista_eventos_page.dart';
 import 'package:chipidei/pages/nino/lista_ninos_page.dart';
 import 'package:chipidei/pages/nino/perfil_nino_page.dart';
 import 'package:chipidei/pages/nivel/lista_niveles_page.dart';
+import 'package:chipidei/forms/eventos_form.dart';
+import 'package:chipidei/forms/nino_form.dart';
+import 'package:chipidei/forms/nivel_form.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -148,7 +151,13 @@ class _HomePageState extends State<HomePage> {
                           width: 125,
                           height: 100,
                           child: Center(
-                            child: Text("Eventos", textAlign: TextAlign.center),
+                            child: Text(
+                              "Eventos",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.indigo,
+                                  fontWeight: FontWeight.w900),
+                            ),
                           ),
                         ),
                       ),
@@ -173,7 +182,13 @@ class _HomePageState extends State<HomePage> {
                           width: 125,
                           height: 100,
                           child: Center(
-                            child: Text("Nivel", textAlign: TextAlign.center),
+                            child: Text(
+                              "Nivel",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.indigo,
+                                  fontWeight: FontWeight.w900),
+                            ),
                           ),
                         ),
                       ),
@@ -188,9 +203,6 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(10),
                   child: ElevatedButton(
                     style: stylebotonlar,
-                    // color: Colors.white,
-                    // shape: new RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(10.0)),
                     onPressed: () {
                       MaterialPageRoute route = MaterialPageRoute(
                         builder: (context) => EducadoraAgregarPage(),
@@ -198,14 +210,18 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(context, route).then((value) {
                         setState(() {});
                       });
-                      // Navigator.pushNamed(context, "/productos");
                     },
                     child: SizedBox(
                       width: 400,
                       height: 25,
                       child: Center(
-                        child: Text("Crear  Perfil Educadora",
-                            textAlign: TextAlign.center),
+                        child: Text(
+                          "Crear  Perfil Educadora",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.w900),
+                        ),
                       ),
                     ),
                   ),
@@ -218,25 +234,25 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(10),
                   child: ElevatedButton(
                     style: stylebotonlar,
-                    // color: Colors.white,
-                    // shape: new RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(10.0)),
                     onPressed: () {
-                      // MaterialPageRoute route = MaterialPageRoute(
-                      //   builder: (context) => EducadoraAgregarPage(),
-                      // );
-                      // Navigator.push(context, route).then((value) {
-                      //   setState(() {});
-                      // });
-
-                      //Navigator.pushNamed(context, "/educadora");
+                      MaterialPageRoute route = MaterialPageRoute(
+                        builder: (context) => NinoAgregarPage(),
+                      );
+                      Navigator.push(context, route).then((value) {
+                        setState(() {});
+                      });
                     },
                     child: SizedBox(
                       width: 400,
                       height: 25,
                       child: Center(
-                        child: Text("Crear Perfil de Niños",
-                            textAlign: TextAlign.center),
+                        child: Text(
+                          "Crear Perfil de Niños",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.w900),
+                        ),
                       ),
                     ),
                   ),
@@ -249,18 +265,25 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(10),
                   child: ElevatedButton(
                     style: stylebotonlar,
-                    // color: Colors.white,
-                    // shape: new RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(10.0)),
                     onPressed: () {
-                      // Navigator.pushNamed(context, "/productos");
+                      MaterialPageRoute route = MaterialPageRoute(
+                        builder: (context) => EventoAgregarPage(),
+                      );
+                      Navigator.push(context, route).then((value) {
+                        setState(() {});
+                      });
                     },
                     child: SizedBox(
                       width: 400,
                       height: 25,
                       child: Center(
-                        child: Text("Crear Historial de Eventos",
-                            textAlign: TextAlign.center),
+                        child: Text(
+                          "Crear Historial de Eventos",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.w900),
+                        ),
                       ),
                     ),
                   ),
@@ -273,17 +296,25 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(10),
                   child: ElevatedButton(
                     style: stylebotonlar,
-                    // color: Colors.white,
-                    // shape: new RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(10.0)),
                     onPressed: () {
-                      // Navigator.pushNamed(context, "/productos");
+                      MaterialPageRoute route = MaterialPageRoute(
+                        builder: (context) => NivelAgregarPage(),
+                      );
+                      Navigator.push(context, route).then((value) {
+                        setState(() {});
+                      });
                     },
                     child: SizedBox(
                       width: 400,
                       height: 25,
                       child: Center(
-                        child: Text("Crear Nivel", textAlign: TextAlign.center),
+                        child: Text(
+                          "Crear Nivel",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.indigo,
+                              fontWeight: FontWeight.w900),
+                        ),
                       ),
                     ),
                   ),
