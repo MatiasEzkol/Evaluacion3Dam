@@ -35,7 +35,6 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
               );
             }
             var data = snapshot.data;
-            print(data);
             String codigo = data['cod_educadora'];
             String nombre = data['nom_educadora'];
 

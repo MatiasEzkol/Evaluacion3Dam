@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:chipidei/pages/nino/perfil_nino_page.dart';
 import 'package:chipidei/providers/ninos_providers.dart';
-import 'package:chipidei/utils/confirmDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../utils/confirmDialog.dart';
 import '../../utils/showSnackBar.dart';
 
 class ListaNinosPage extends StatefulWidget {
@@ -55,7 +55,8 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     MaterialPageRoute route = MaterialPageRoute(
-                                      builder: (context) => PerfilNinoPage(),
+                                      builder: (context) =>
+                                          PerfilNinoPage(nino['cod_nino']),
                                     );
                                     Navigator.push(context, route)
                                         .then((value) {
