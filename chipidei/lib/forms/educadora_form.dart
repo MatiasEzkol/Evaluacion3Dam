@@ -1,5 +1,6 @@
 import 'package:chipidei/providers/educadora_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class EducadoraAgregarPage extends StatefulWidget {
@@ -11,6 +12,9 @@ class EducadoraAgregarPage extends StatefulWidget {
 
 class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
   final formKey = GlobalKey<FormState>();
+  DateTime fechaIngreso = DateTime.now();
+  DateTime fechaNacimiento = DateTime.now();
+  var ffecha = DateFormat('dd-MM-yyyy');
   TextEditingController codigoCtrl = TextEditingController();
   TextEditingController nombreCtrl = TextEditingController();
   TextEditingController apellidoCtrl = TextEditingController();
@@ -70,12 +74,8 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
                   style: TextStyle(color: Colors.red),
                 ),
               ),
-              TextFormField(
-                controller: nombreCtrl,
-                decoration: InputDecoration(
-                    labelText: 'Fecha de Nacimiento',
-                    icon: new Icon(MdiIcons.calendar)),
-              ),
+              campoFechaNacimiento(context),
+              campoFechaAdmision(context),
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -112,6 +112,62 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Row campoFechaNacimiento(BuildContext context) {
+    return Row(
+      children: [
+        Text('Fecha de nacimiento:', style: TextStyle(fontSize: 16)),
+        Text(ffecha.format(fechaNacimiento),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Spacer(),
+        TextButton(
+          child: Icon(MdiIcons.calendar),
+          onPressed: () {
+            showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1920),
+              lastDate: DateTime.now(),
+              locale: Locale('es', 'ES'),
+            ).then((fecha) {
+              setState(() {
+                // fechaSeleccionada = fecha != null ? fecha : fechaSeleccionada;
+                fechaNacimiento = fecha ?? fechaNacimiento;
+              });
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  Row campoFechaAdmision(BuildContext context) {
+    return Row(
+      children: [
+        Text('Fecha de ingreso:', style: TextStyle(fontSize: 16)),
+        Text(ffecha.format(fechaIngreso),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Spacer(),
+        TextButton(
+          child: Icon(MdiIcons.calendar),
+          onPressed: () {
+            showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1920),
+              lastDate: DateTime.now(),
+              locale: Locale('es', 'ES'),
+            ).then((fecha) {
+              setState(() {
+                // fechaSeleccionada = fecha != null ? fecha : fechaSeleccionada;
+                fechaIngreso = fecha ?? fechaIngreso;
+              });
+            });
+          },
+        ),
+      ],
     );
   }
 }

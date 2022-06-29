@@ -1,5 +1,6 @@
 import 'package:chipidei/providers/nino_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class NinoAgregarPage extends StatefulWidget {
@@ -11,6 +12,9 @@ class NinoAgregarPage extends StatefulWidget {
 
 class _NinoAgregarPageState extends State<NinoAgregarPage> {
   final formKey = GlobalKey<FormState>();
+  DateTime fechaNacimiento = DateTime.now();
+  DateTime fechaAdmision = DateTime.now();
+  var ffecha = DateFormat('dd-MM-yyyy');
 
   TextEditingController codigoCtrl = TextEditingController();
   TextEditingController nombreCtrl = TextEditingController();
@@ -69,11 +73,36 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
                   style: TextStyle(color: Colors.red),
                 ),
               ),
+              campoFechaNacimiento(context),
+              campoFechaAdmision(context),
+              TextFormField(
+                controller: nombreCtrl,
+                decoration: InputDecoration(labelText: '👨 Nombre del Padre'),
+              ),
+              Container(
+                width: double.infinity,
+                child: Text(
+                  errNombre,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+              TextFormField(
+                controller: nombreCtrl,
+                decoration: InputDecoration(
+                  labelText: '👩 Nombre de la Madre ',
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                child: Text(
+                  errNombre,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Fecha de Nacimiento',
-                  //suffixIcon:
-                  //icon: new Icon(MdiIcons.calendar)
+                  labelText: '📞Telefono de Contacto',
+                  //icon: new Icon(MdiIcons.phone)
                 ),
               ),
               Container(
@@ -111,6 +140,62 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Row campoFechaNacimiento(BuildContext context) {
+    return Row(
+      children: [
+        Text('Fecha de nacimiento:', style: TextStyle(fontSize: 16)),
+        Text(ffecha.format(fechaNacimiento),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Spacer(),
+        TextButton(
+          child: Icon(MdiIcons.calendar),
+          onPressed: () {
+            showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1920),
+              lastDate: DateTime.now(),
+              locale: Locale('es', 'ES'),
+            ).then((fecha) {
+              setState(() {
+                // fechaSeleccionada = fecha != null ? fecha : fechaSeleccionada;
+                fechaNacimiento = fecha ?? fechaNacimiento;
+              });
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  Row campoFechaAdmision(BuildContext context) {
+    return Row(
+      children: [
+        Text('Fecha de admision:', style: TextStyle(fontSize: 16)),
+        Text(ffecha.format(fechaAdmision),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        Spacer(),
+        TextButton(
+          child: Icon(MdiIcons.calendar),
+          onPressed: () {
+            showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1920),
+              lastDate: DateTime.now(),
+              locale: Locale('es', 'ES'),
+            ).then((fecha) {
+              setState(() {
+                // fechaSeleccionada = fecha != null ? fecha : fechaSeleccionada;
+                fechaAdmision = fecha ?? fechaAdmision;
+              });
+            });
+          },
+        ),
+      ],
     );
   }
 }
