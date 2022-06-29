@@ -1,5 +1,7 @@
-import 'dart:developer';
-import 'package:chipidei/providers/evento_providers.dart';
+import 'package:chipidei/providers/eventos_providers.dart';
+import 'package:chipidei/utils/confirmDialog.dart';
+import 'package:chipidei/utils/showSnackBar.dart';
+import 'package:chipidei/utils/truncate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -24,7 +26,7 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
             children: [
               Expanded(
                 child: FutureBuilder(
-                  future: EventosProvider().getEventos(),
+                  future: EventosProviders().getEventos(),
                   builder: (context, AsyncSnapshot snap) {
                     if (!snap.hasData) {
                       return Center(
@@ -43,6 +45,8 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
                               leading: Icon(MdiIcons.account),
                               title: Text(evento['descripcion_evento']),
                               subtitle: Text(evento['cod_evento']),
+                              trailing:
+                                  Text(truncate(evento['created_at'], 10)),
                             ),
                             // startActionPane: ActionPane(
                             //   motion: ScrollMotion(),
@@ -69,21 +73,23 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     String cod_evento = evento['cod_evento'];
-                                    confirmDialog(context,
+                                    confirmDialog(this.context, 'evento',
                                             evento['descripcion_evento'])
                                         .then((confirma) {
                                       if (confirma) {
-                                        EventosProvider()
-                                            .borrarEvento(cod_evento)
+                                        EventosProviders()
+                                            .eventoBorrar(cod_evento)
                                             .then((borradoOk) {
                                           if (borradoOk) {
                                             snap.data.removeAt(index);
                                             //set
-                                            showSnackBar('Evento borrado');
+                                            showSnackBar(
+                                                'Evento borrado', this.context);
                                             setState(() {});
                                           } else {
                                             showSnackBar(
-                                                'No se pudo borrar evento');
+                                                'No se pudo borrar evento',
+                                                this.context);
                                           }
                                         });
                                       }
@@ -103,32 +109,5 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
             ],
           ),
         ));
-  }
-
-  void showSnackBar(String mensaje) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(mensaje),
-      duration: Duration(seconds: 2),
-    ));
-  }
-
-  Future<dynamic> confirmDialog(BuildContext context, String evento) {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Confirma borrado'),
-            content: Text('Seguro que quiere borrar a evento $evento?'),
-            actions: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: Text('Cancelar')),
-              ElevatedButton(
-                  onPressed: () => Navigator.pop(context, true),
-                  child: Text('Aceptar'))
-            ],
-          );
-        });
   }
 }

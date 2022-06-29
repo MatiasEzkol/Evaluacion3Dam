@@ -14,11 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('nino', function (Blueprint $table) {
-            $table->string('cod_nino')->primary();
+            $table->string('cod_nino')->primary(); //rut sin dig verificador
             $table->string('nom_nino');
             $table ->string('apell_nino');
             $table ->string('foto_nino');
             $table->dateTime('fecha_nac_nino');
+            //numero
+            //direccion
             $table->timestamps();
             $table->softDeletes();
         });
