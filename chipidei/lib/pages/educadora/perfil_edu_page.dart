@@ -1,4 +1,4 @@
-import 'package:chipidei/providers/educadora_providers.dart';
+import 'package:chipidei/providers/educadoras_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'dart:developer';
@@ -27,16 +27,17 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
         ),
       ),
       body: FutureBuilder(
-          future: EducadoraProviders().getEducadora(widget.codEducadora),
+          future: EducadorasProviders().getEducadora(widget.codEducadora),
           builder: (context, AsyncSnapshot snapshot) {
             if (!snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             }
-            var data = snapshot.data; 
-            String codigo = data[0]['cod_educadora']; 
-            String nombre = data[0]['nom_educadora']; 
+            var data = snapshot.data;
+            print(data);
+            String codigo = data['cod_educadora'];
+            String nombre = data['nom_educadora'];
 
             return Padding(
               padding: const EdgeInsets.all(15),
@@ -81,7 +82,7 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                                       fontSize: 20,
                                       color: Colors.white,
                                       height: 1.6),
-                                ), 
+                                ),
                                 Text(
                                   'Curso:',
                                   style: TextStyle(
