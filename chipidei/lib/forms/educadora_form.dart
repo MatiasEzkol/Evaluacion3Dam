@@ -1,5 +1,6 @@
 import 'package:chipidei/providers/educadora_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class EducadoraAgregarPage extends StatefulWidget {
   EducadoraAgregarPage({Key? key}) : super(key: key);
@@ -33,7 +34,8 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
             children: [
               TextFormField(
                 controller: codigoCtrl,
-                decoration: InputDecoration(labelText: 'Código Educadora'),
+                decoration: InputDecoration(
+                    labelText: 'Código Educadora', icon: new Icon(Icons.code)),
               ),
               Container(
                 width: double.infinity,
@@ -44,7 +46,9 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
               ),
               TextFormField(
                 controller: nombreCtrl,
-                decoration: InputDecoration(labelText: 'Nombre Educadora'),
+                decoration: InputDecoration(
+                    labelText: 'Nombre Educadora',
+                    icon: new Icon(MdiIcons.accountBox)),
               ),
               Container(
                 width: double.infinity,
@@ -55,7 +59,9 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
               ),
               TextFormField(
                 controller: nombreCtrl,
-                decoration: InputDecoration(labelText: 'Apellido Educadora'),
+                decoration: InputDecoration(
+                    labelText: 'Apellido Educadora',
+                    icon: new Icon(MdiIcons.accountBox)),
               ),
               Container(
                 width: double.infinity,
@@ -63,6 +69,12 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
                   errApellido,
                   style: TextStyle(color: Colors.red),
                 ),
+              ),
+              TextFormField(
+                controller: nombreCtrl,
+                decoration: InputDecoration(
+                    labelText: 'Fecha de Nacimiento',
+                    icon: new Icon(MdiIcons.calendar)),
               ),
               Container(
                 width: double.infinity,

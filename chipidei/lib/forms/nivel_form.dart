@@ -1,5 +1,6 @@
 import 'package:chipidei/providers/nivel_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class NivelAgregarPage extends StatefulWidget {
   NivelAgregarPage({Key? key}) : super(key: key);
@@ -30,7 +31,8 @@ class _NivelAgregarPageState extends State<NivelAgregarPage> {
             children: [
               TextFormField(
                 controller: codigoCtrl,
-                decoration: InputDecoration(labelText: 'Código Nivel'),
+                decoration: InputDecoration(
+                    labelText: 'Código Nivel', icon: new Icon(Icons.code)),
               ),
               Container(
                 width: double.infinity,
@@ -41,7 +43,9 @@ class _NivelAgregarPageState extends State<NivelAgregarPage> {
               ),
               TextFormField(
                 controller: nombreCtrl,
-                decoration: InputDecoration(labelText: 'Nombre del nivel'),
+                decoration: InputDecoration(
+                    labelText: 'Nombre del nivel',
+                    icon: new Icon(MdiIcons.accountBox)),
               ),
               Container(
                 width: double.infinity,

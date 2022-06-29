@@ -31,7 +31,8 @@ class _EventoAgregarPageState extends State<EventoAgregarPage> {
             children: [
               TextFormField(
                 controller: codigoCtrl,
-                decoration: InputDecoration(labelText: 'Código Evento'),
+                decoration: InputDecoration(
+                    labelText: 'Código Evento', icon: new Icon(Icons.code)),
               ),
               Container(
                 width: double.infinity,
@@ -43,7 +44,20 @@ class _EventoAgregarPageState extends State<EventoAgregarPage> {
               TextFormField(
                 controller: descripcionCtrl,
                 decoration: InputDecoration(
-                    labelText: 'Descripcion del evento sucedido'),
+                    labelText: 'Descripcion del evento sucedido',
+                    icon: new Icon(Icons.description)),
+              ),
+              Container(
+                width: double.infinity,
+                child: Text(
+                  errDescripcion,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+              TextFormField(
+                controller: descripcionCtrl,
+                decoration: InputDecoration(
+                    labelText: 'Niño con Evento', icon: new Icon(Icons.boy)),
               ),
               Container(
                 width: double.infinity,

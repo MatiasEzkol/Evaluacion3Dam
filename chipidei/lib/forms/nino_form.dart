@@ -1,5 +1,6 @@
 import 'package:chipidei/providers/nino_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class NinoAgregarPage extends StatefulWidget {
   NinoAgregarPage({Key? key}) : super(key: key);
@@ -34,7 +35,8 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
             children: [
               TextFormField(
                 controller: codigoCtrl,
-                decoration: InputDecoration(labelText: 'Código Niño'),
+                decoration: InputDecoration(
+                    labelText: 'Código Niño', icon: new Icon(Icons.code)),
               ),
               Container(
                 width: double.infinity,
@@ -45,7 +47,8 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
               ),
               TextFormField(
                 controller: nombreCtrl,
-                decoration: InputDecoration(labelText: 'Nombre Niño'),
+                decoration: InputDecoration(
+                    labelText: 'Nombre Niño', icon: new Icon(Icons.boy)),
               ),
               Container(
                 width: double.infinity,
@@ -56,13 +59,21 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
               ),
               TextFormField(
                 controller: nombreCtrl,
-                decoration: InputDecoration(labelText: 'Apellido Niño'),
+                decoration: InputDecoration(
+                    labelText: 'Apellido Niño', icon: new Icon(Icons.boy)),
               ),
               Container(
                 width: double.infinity,
                 child: Text(
                   errApellido,
                   style: TextStyle(color: Colors.red),
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Fecha de Nacimiento',
+                  //suffixIcon:
+                  //icon: new Icon(MdiIcons.calendar)
                 ),
               ),
               Container(
