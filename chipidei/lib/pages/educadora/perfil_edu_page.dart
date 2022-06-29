@@ -60,11 +60,11 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                             style: TextStyle(
                                 fontSize: 20, color: Colors.white, height: 1.6),
                           ),
-                          Text(
-                            'Profe',
-                            style: TextStyle(
-                                fontSize: 20, color: Colors.white, height: 1.3),
-                          ),
+                          // Text(
+                          //   'Profe',
+                          //   style: TextStyle(
+                          //       fontSize: 20, color: Colors.white, height: 1.3),
+                          // ),
                           Text(
                             'Edad',
                             style: TextStyle(
@@ -110,7 +110,7 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Información personal',
+                      'Información de contacto',
                       style: TextStyle(
                         fontSize: 20,
                       ),
@@ -204,9 +204,6 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
           ],
         ),
       ),
-    ); 
+    );
   }
 }
- 
-  
-    

@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:chipidei/providers/evento_providers.dart';
+import 'package:chipidei/providers/eventos_providers.dart';
 import 'package:chipidei/utils/confirmDialog.dart';
 import 'package:chipidei/utils/showSnackBar.dart';
 import 'package:chipidei/utils/truncate.dart';
@@ -27,7 +27,7 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
             children: [
               Expanded(
                 child: FutureBuilder(
-                  future: EventosProvider().getEventos(),
+                  future: EventosProviders().getEventos(),
                   builder: (context, AsyncSnapshot snap) {
                     if (!snap.hasData) {
                       return Center(
@@ -78,7 +78,7 @@ class _ListaEventosPageState extends State<ListaEventosPage> {
                                             evento['descripcion_evento'])
                                         .then((confirma) {
                                       if (confirma) {
-                                        EventosProvider()
+                                        EventosProviders()
                                             .borrarEvento(cod_evento)
                                             .then((borradoOk) {
                                           if (borradoOk) {

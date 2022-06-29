@@ -25,7 +25,7 @@ class EventosRequest extends FormRequest
     {
         return [
             'cod_evento' => 'required|unique:evento,cod_evento',
-            'descripcion_evento' => 'required|min:5|max:50',
+            'descripcion_evento' => 'required|min:7|max:50',
         ];
     }
 
@@ -35,7 +35,7 @@ class EventosRequest extends FormRequest
             'cod_evento.unique' => 'El código :input ya existe en el sistema',
             // 'cod_educadora.min' => 'El código debe tener al menos 2 chars',
             'descripcion_evento.required' => 'Indique la descripción',
-            'descripcion_evento.min' => 'La descripción debe contener al menos 5 carácteres',
+            'descripcion_evento.min' => 'La descripción debe contener al menos 7 carácteres',
             'descripcion_evento.max' => 'La descripción debe contener hasta 50 carácteres',
         ];
     }

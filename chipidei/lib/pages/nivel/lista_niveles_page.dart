@@ -26,7 +26,7 @@ class _ListaNivelesPageState extends State<ListaNivelesPage> {
             children: [
               Expanded(
                 child: FutureBuilder(
-                  future: NivelesProvider().getNiveles(),
+                  future: NivelesProviders().getNiveles(),
                   builder: (context, AsyncSnapshot snap) {
                     if (!snap.hasData) {
                       return Center(
@@ -74,7 +74,7 @@ class _ListaNivelesPageState extends State<ListaNivelesPage> {
                                     confirmDialog(context,'nivel', nivel['nom_nivel'])
                                         .then((confirma) {
                                       if (confirma) {
-                                        NivelesProvider()
+                                        NivelesProviders()
                                             .borrarNivel(cod_nivel)
                                             .then((borradoOk) {
                                           if (borradoOk) {

@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:chipidei/pages/nino/perfil_nino_page.dart';
@@ -30,7 +29,7 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
             children: [
               Expanded(
                 child: FutureBuilder(
-                  future: NinosProvider().getNinos(),
+                  future: NinosProviders().getNinos(),
                   builder: (context, AsyncSnapshot snap) {
                     if (!snap.hasData) {
                       return Center(
@@ -75,19 +74,23 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     String cod_nino = nino['cod_nino'];
-                                    confirmDialog(context,'niño', nino['nom_nino'])
+                                    confirmDialog(
+                                            context, 'niño', nino['nom_nino'])
                                         .then((confirma) {
                                       if (confirma) {
-                                        NinosProvider()
+                                        NinosProviders()
                                             .borrarNino(cod_nino)
                                             .then((borradoOk) {
                                           if (borradoOk) {
                                             snap.data.removeAt(index);
                                             //set
-                                            showSnackBar('Niño borrado',this.context);
+                                            showSnackBar(
+                                                'Niño borrado', this.context);
                                             setState(() {});
                                           } else {
-                                            showSnackBar('No se pudo borrar niño',this.context);
+                                            showSnackBar(
+                                                'No se pudo borrar niño',
+                                                this.context);
                                           }
                                         });
                                       }

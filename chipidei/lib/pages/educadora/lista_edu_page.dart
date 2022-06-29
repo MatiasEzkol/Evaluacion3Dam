@@ -29,7 +29,7 @@ class _ListaEduPageState extends State<ListaEduPage> {
             children: [
               Expanded(
                 child: FutureBuilder(
-                  future: EducadorasProvider().getEducadoras(),
+                  future: EducadorasProviders().getEducadoras(),
                   builder: (context, AsyncSnapshot snap) {
                     if (!snap.hasData) {
                       return Center(
@@ -79,7 +79,7 @@ class _ListaEduPageState extends State<ListaEduPage> {
                                             context,'educadora', educadora['nom_educadora'])
                                         .then((confirma) {
                                       if (confirma) {
-                                        EducadorasProvider()
+                                        EducadorasProviders()
                                             .borrarEducadora(cod_educadora)
                                             .then((borradoOk) {
                                           if (borradoOk) {
