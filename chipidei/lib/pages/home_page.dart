@@ -1,4 +1,10 @@
 import 'package:chipidei/forms/educadora_form.dart';
+import 'package:chipidei/pages/educadora/lista_edu_page.dart';
+import 'package:chipidei/pages/educadora/perfil_edu_page.dart';
+import 'package:chipidei/pages/evento/lista_eventos_page.dart';
+import 'package:chipidei/pages/nino/lista_ninos_page.dart';
+import 'package:chipidei/pages/nino/perfil_nino_page.dart';
+import 'package:chipidei/pages/nivel/lista_niveles_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,25 +18,33 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final ButtonStyle styleboton = ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(Color.fromARGB(255, 199, 252, 255)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(65.0),
-    )));
+          borderRadius: BorderRadius.circular(65.0),
+        )));
 
     final ButtonStyle stylebotonlar = ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(Color.fromARGB(255, 199, 252, 255)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(70.0),
-    )));
+          borderRadius: BorderRadius.circular(70.0),
+        )));
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bienvenidos al Jardin CHIPIDEI'),
+        backgroundColor: Color.fromARGB(255, 231, 98, 231),
+        title: Text(
+          'Bienvenidos al Jardin CHIPIDEI',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.only(top: 170, bottom: 40, right: 10, left: 10),
         decoration: BoxDecoration(
-            color: Colors.greenAccent,
+            color: Color.fromARGB(255, 255, 191, 235),
             image: DecorationImage(
                 image: NetworkImage(
                     "https://lirp.cdn-website.com/de418cbe/dms3rep/multi/opt/31412-jardin-infantil-sala-cuna-principito-tren-flat-802w.png"),
@@ -50,7 +64,12 @@ class _HomePageState extends State<HomePage> {
                         //shape: new RoundedRectangleBorder(
                         //  borderRadius: BorderRadius.circular(10.0)),
                         onPressed: () {
-                          // Navigator.pushNamed(context, "/inicio");
+                          MaterialPageRoute route = MaterialPageRoute(
+                            builder: (context) => ListaEduPage(),
+                          );
+                          Navigator.push(context, route).then((value) {
+                            setState(() {});
+                          });
                         },
                         child: SizedBox(
                           width: 125,
@@ -79,7 +98,12 @@ class _HomePageState extends State<HomePage> {
                         // shape: new RoundedRectangleBorder(
                         //     borderRadius: BorderRadius.circular(10.0)),
                         onPressed: () {
-                          // Navigator.pushNamed(context, "/empresa");
+                          MaterialPageRoute route = MaterialPageRoute(
+                            builder: (context) => ListaNinosPage(),
+                          );
+                          Navigator.push(context, route).then((value) {
+                            setState(() {});
+                          });
                         },
                         child: SizedBox(
                           width: 125,
@@ -113,7 +137,12 @@ class _HomePageState extends State<HomePage> {
                         // shape: new RoundedRectangleBorder(
                         //     borderRadius: BorderRadius.circular(10.0)),
                         onPressed: () {
-                          // Navigator.pushNamed(context, "/productos");
+                          MaterialPageRoute route = MaterialPageRoute(
+                            builder: (context) => ListaEventosPage(),
+                          );
+                          Navigator.push(context, route).then((value) {
+                            setState(() {});
+                          });
                         },
                         child: SizedBox(
                           width: 125,
@@ -133,7 +162,12 @@ class _HomePageState extends State<HomePage> {
                       child: ElevatedButton(
                         style: styleboton,
                         onPressed: () {
-                          // Navigator.pushNamed(context, "/contacto");
+                          MaterialPageRoute route = MaterialPageRoute(
+                            builder: (context) => ListaNivelesPage(),
+                          );
+                          Navigator.push(context, route).then((value) {
+                            setState(() {});
+                          });
                         },
                         child: SizedBox(
                           width: 125,
