@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+// TODO: Niños Request
 
 class NinosRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class NinosRequest extends FormRequest
     public function rules()
     {
         return [
-            'cod_nino'=>'required|unique:educadora,cod_educadora',
+            'rut_nino'=>'required|unique:educadora,cod_educadora',
             'nom_nino'=>'required|string|min:3|max:20',
             'apell_nino'=>'required|string',
             'fecha_nac_nino'=>'required|before:today|after:1900-01-01',
@@ -35,8 +36,8 @@ class NinosRequest extends FormRequest
 
     public function messages(){
         return [
-            'cod_nino.required' => 'Indique código de nino',
-            'cod_nino.unique' => 'El código :input ya existe en el sistema',
+            'rut_nino.required' => 'Indique código de nino',
+            'rut_nino.unique' => 'El código :input ya existe en el sistema',
             'nom_nino.required' => 'Indique nombre del nino',
             // 'nom_nino.string' => 'El nombre solo puede contener carácteres',
             'nom_nino.min' => 'El nombre debe contener al menos 5 carácteres',

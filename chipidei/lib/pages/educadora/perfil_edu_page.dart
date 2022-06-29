@@ -4,8 +4,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'dart:developer';
 
 class PerfilEduPage extends StatefulWidget {
-  String codEducadora;
-  PerfilEduPage(this.codEducadora, {Key? key}) : super(key: key);
+  String rutEducadora;
+  PerfilEduPage(this.rutEducadora, {Key? key}) : super(key: key);
 
   @override
   State<PerfilEduPage> createState() => _PerfilEduPageState();
@@ -27,7 +27,7 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
         ),
       ),
       body: FutureBuilder(
-          future: EducadorasProviders().getEducadora(widget.codEducadora),
+          future: EducadorasProviders().getEducadora(widget.rutEducadora),
           builder: (context, AsyncSnapshot snapshot) {
             if (!snapshot.hasData) {
               return Center(
@@ -35,7 +35,8 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
               );
             }
             var data = snapshot.data;
-            String codigo = data['cod_educadora'];
+            print(data);
+            String codigo = data['rut_educadora'];
             String nombre = data['nom_educadora'];
 
             return Padding(

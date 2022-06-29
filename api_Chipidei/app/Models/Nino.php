@@ -10,7 +10,7 @@ class Nino extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'nino';
-    protected $primaryKey= 'cod_nino';
+    protected $primaryKey= 'rut_nino';
     public $incrementing= 'false';
     protected $keyType= 'string';
 

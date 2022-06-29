@@ -28,10 +28,13 @@ class EducadoraController extends Controller
     public function store(EducadorasRequest $request)
     {
         $educadora = new Educadora();
-        $educadora->cod_educadora = $request->cod_educadora;
+        $educadora->rut_educadora = $request->rut_educadora;
         $educadora->nom_educadora = $request->nom_educadora;
         $educadora->apell_educadora = $request->apell_educadora;
         $educadora->fecha_nac_educadora = $request->fecha_nac_educadora;
+        $educadora->fecha_adm_educadora = $request->fecha_adm_educadora;
+        $educadora->tel_educadora = $request->tel_educadora;
+        $educadora->direccion_educadora = $request->direccion_educadora;
         $educadora->nivel = $request->nivel;
         $educadora->save();
     }
@@ -56,10 +59,13 @@ class EducadoraController extends Controller
      */
     public function update(EducadorasRequest $request, Educadora $educadora)
     {
-        $educadora->cod_educadora = $request->cod_educadora;
+        $educadora->rut_educadora = $request->rut_educadora;
         $educadora->nom_educadora = $request->nom_educadora;
         $educadora->apell_educadora = $request->apell_educadora;
         $educadora->fecha_nac_educadora = $request->fecha_nac_educadora;
+        $educadora->fecha_adm_educadora = $request->fecha_adm_educadora;
+        $educadora->tel_educadora = $request->tel_educadora;
+        $educadora->direccion_educadora = $request->direccion_educadora;
         $educadora->nivel = $request->nivel;
         $educadora->save();
         return $educadora;

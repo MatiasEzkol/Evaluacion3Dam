@@ -47,15 +47,17 @@ class _ListaEduPageState extends State<ListaEduPage> {
                             child: ListTile(
                               leading: Icon(MdiIcons.account),
                               title: Text(educadora['nom_educadora']),
-                              subtitle: Text(educadora['cod_educadora']),
+                              subtitle: Text(educadora['rut_educadora']),
                             ),
                             startActionPane: ActionPane(
                               motion: ScrollMotion(),
                               children: [
                                 SlidableAction(
                                   onPressed: (context) {
+                                    print(educadora);
                                     MaterialPageRoute route = MaterialPageRoute(
-                                      builder: (context) => PerfilEduPage(educadora['cod_educadora']),
+                                      builder: (context) => PerfilEduPage(
+                                          educadora['rut_educadora']),
                                     );
                                     Navigator.push(context, route)
                                         .then((value) {
@@ -74,9 +76,9 @@ class _ListaEduPageState extends State<ListaEduPage> {
                                 SlidableAction(
                                   onPressed: (context) {
                                     String cod_educadora =
-                                        educadora['cod_educadora'];
-                                    confirmDialog(
-                                            context,'educadora', educadora['nom_educadora'])
+                                        educadora['rut_educadora'];
+                                    confirmDialog(context, 'educadora',
+                                            educadora['nom_educadora'])
                                         .then((confirma) {
                                       if (confirma) {
                                         EducadorasProviders()
@@ -85,10 +87,13 @@ class _ListaEduPageState extends State<ListaEduPage> {
                                           if (borradoOk) {
                                             snap.data.removeAt(index);
                                             //set
-                                            showSnackBar('Educadora borrada',this.context);
+                                            showSnackBar('Educadora borrada',
+                                                this.context);
                                             setState(() {});
                                           } else {
-                                            showSnackBar('No se pudo borrar educadora',this.context);
+                                            showSnackBar(
+                                                'No se pudo borrar educadora',
+                                                this.context);
                                           }
                                         });
                                       }
