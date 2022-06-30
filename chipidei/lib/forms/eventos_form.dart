@@ -21,6 +21,7 @@ class _EventoAgregarPageState extends State<EventoAgregarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 231, 98, 231),
         title: Text('Historial de Evento'),
       ),
       body: Form(
@@ -69,29 +70,32 @@ class _EventoAgregarPageState extends State<EventoAgregarPage> {
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: Text('Agregar Historial de Evento'),
-                  onPressed: () async {
-                    var respuesta = await EventosProviders().eventoAgregar(
-                        codigoCtrl.text.trim(),
-                        descripcionCtrl.text.trim(),
-                        fechaCtrl.text.trim());
+                    child: Text('Agregar Historial de Evento'),
+                    onPressed: () async {
+                      var respuesta = await EventosProviders().eventoAgregar(
+                          codigoCtrl.text.trim(),
+                          descripcionCtrl.text.trim(),
+                          fechaCtrl.text.trim());
 
-                    if (respuesta['message'] != null) {
-                      //cod
-                      if (respuesta['errors']['cod_evento'] != null) {
-                        errCodigo = respuesta['errors']['cod_evento'][0];
-                      }
-                      //descripcion
-                      if (respuesta['errors']['descripcion'] != null) {
-                        errDescripcion = respuesta['errors']['descripcion'][0];
-                      }
+                      if (respuesta['message'] != null) {
+                        //cod
+                        if (respuesta['errors']['cod_evento'] != null) {
+                          errCodigo = respuesta['errors']['cod_evento'][0];
+                        }
+                        //descripcion
+                        if (respuesta['errors']['descripcion'] != null) {
+                          errDescripcion =
+                              respuesta['errors']['descripcion'][0];
+                        }
 
-                      setState(() {});
-                      return;
-                    }
-                    Navigator.pop(context);
-                  },
-                ),
+                        setState(() {});
+                        return;
+                      }
+                      Navigator.pop(context);
+                    },
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            Color.fromARGB(255, 231, 98, 231)))),
               ),
             ],
           ),

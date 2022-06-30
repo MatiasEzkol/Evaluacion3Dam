@@ -29,6 +29,7 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 231, 98, 231),
         title: Text('Crear Perfil de Niño'),
       ),
       body: Form(
@@ -110,33 +111,35 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: Text('Agregar Perfil de Niño'),
-                  onPressed: () async {
-                    var respuesta = await NinoProviders().ninoAgregar(
-                        codigoCtrl.text.trim(),
-                        nombreCtrl.text.trim(),
-                        apellidoCtrl.text.trim(),
-                        fechaCtrl.text.trim());
+                    child: Text('Agregar Perfil de Niño'),
+                    onPressed: () async {
+                      var respuesta = await NinoProviders().ninoAgregar(
+                          codigoCtrl.text.trim(),
+                          nombreCtrl.text.trim(),
+                          apellidoCtrl.text.trim(),
+                          fechaCtrl.text.trim());
 
-                    if (respuesta['message'] != null) {
-                      //cod
-                      if (respuesta['errors']['cod_nino'] != null) {
-                        errCodigo = respuesta['errors']['cod_nino'][0];
+                      if (respuesta['message'] != null) {
+                        //cod
+                        if (respuesta['errors']['cod_nino'] != null) {
+                          errCodigo = respuesta['errors']['cod_nino'][0];
+                        }
+                        //nombre
+                        if (respuesta['errors']['nom_nino'] != null) {
+                          errNombre = respuesta['errors']['nom_nino'][0];
+                        }
+                        //apellido
+                        if (respuesta['errors']['apell_nino'] != null) {
+                          errApellido = respuesta['errors']['apell_nino'][0];
+                        }
+                        setState(() {});
+                        return;
                       }
-                      //nombre
-                      if (respuesta['errors']['nom_nino'] != null) {
-                        errNombre = respuesta['errors']['nom_nino'][0];
-                      }
-                      //apellido
-                      if (respuesta['errors']['apell_nino'] != null) {
-                        errApellido = respuesta['errors']['apell_nino'][0];
-                      }
-                      setState(() {});
-                      return;
-                    }
-                    Navigator.pop(context);
-                  },
-                ),
+                      Navigator.pop(context);
+                    },
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            Color.fromARGB(255, 231, 98, 231)))),
               ),
             ],
           ),
