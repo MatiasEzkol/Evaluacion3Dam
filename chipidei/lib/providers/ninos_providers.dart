@@ -18,8 +18,8 @@ class NinosProviders {
   }
 
   //GET ONE
-  Future<LinkedHashMap<String, dynamic>> getNino( String codNino ) async {
-    var uri = Uri.parse('$apiURL/nino/$codNino');
+  Future<LinkedHashMap<String, dynamic>> getNino( String rut_nino ) async {
+    var uri = Uri.parse('$apiURL/nino/$rut_nino');
     var respuesta = await http.get(uri);
 
     if (respuesta.statusCode == 200) {
@@ -31,11 +31,16 @@ class NinosProviders {
 
   //POST
   Future<List<dynamic>> agregarNino(
-    String cod_nino, 
+    String rut_nino, 
     String nom_nino,
     String apell_nino, 
     String foto_nino, 
-    DateTime fecha_nac_nino
+    DateTime fecha_nac_nino,
+    DateTime fecha_adm_nino,
+    String nom_padre_nino,
+    String nom_madre_nino,
+    String tel_nino,
+    String direccion_nino,
     ) async {
     var uri = Uri.parse('$apiURL/nino');
     var respuesta = await http.post(uri,
@@ -44,43 +49,59 @@ class NinosProviders {
           'Accept': 'appication/json'
         },
         body: jsonEncode(<String, dynamic>{
-          'cod_nino': cod_nino, 
+          'rut_nino': rut_nino, 
           'nom_nino': nom_nino, 
           'apell_nino': apell_nino, 
           'foto_nino': foto_nino, 
-          'fecha_nac_nino': fecha_nac_nino
+          'fecha_nac_nino': fecha_nac_nino,
+          'fecha_adm_nino': fecha_adm_nino,
+          'nom_padre_nino': nom_padre_nino,
+          'nom_madre_nino': nom_madre_nino,
+          'tel_nino': tel_nino,
+          'direccion_nino': direccion_nino,
         }));
     return json.decode(respuesta.body);
   }
 
   //PUT
   Future<LinkedHashMap<String, dynamic>> editarNino(
-    String cod_nino, 
-    String cod_nino_nuevo, 
-    String nom_nino, 
+    String rut_nino, 
+    String rut_nuevo_nino, 
+    String nom_nino,
     String apell_nino, 
     String foto_nino, 
-    DateTime fecha_nac_nino) async {
-    var uri = Uri.parse('$apiURL/nino/$cod_nino');
+    DateTime fecha_nac_nino,
+    DateTime fecha_adm_nino,
+    String nom_padre_nino,
+    String nom_madre_nino,
+    String tel_nino,
+    String direccion_nino,
+    ) async {
+    var uri = Uri.parse('$apiURL/nino/$rut_nino');
     var respuesta = await http.put(uri,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Accept': 'appication/json'
         },
         body: jsonEncode(<String, dynamic>{
-          'cod_nino': cod_nino, 
-          'cod_nino_nuevo': cod_nino_nuevo, 
+          'rut_nino': rut_nino, 
+          'rut_nuevo_nino': rut_nuevo_nino, 
           'nom_nino': nom_nino, 
           'apell_nino': apell_nino, 
           'foto_nino': foto_nino, 
-          'fecha_nac_nino': fecha_nac_nino
+          'fecha_nac_nino': fecha_nac_nino,
+          'fecha_adm_nino': fecha_adm_nino,
+          'nom_padre_nino': nom_padre_nino,
+          'nom_madre_nino': nom_madre_nino,
+          'tel_nino': tel_nino,
+          'direccion_nino': direccion_nino,
           }));
     return json.decode(respuesta.body);
   }
 
   //DELETE
-  Future<bool> borrarNino( String cod_nino ) async {
-    var uri = Uri.parse('$apiURL/nino/$cod_nino');
+  Future<bool> borrarNino( String rut_nino ) async {
+    var uri = Uri.parse('$apiURL/nino/$rut_nino');
     var respuesta = await http.delete(uri);
     return respuesta.statusCode == 200;
   }

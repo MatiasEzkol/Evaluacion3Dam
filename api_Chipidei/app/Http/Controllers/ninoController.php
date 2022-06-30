@@ -27,11 +27,16 @@ class NinoController extends Controller
     public function store(NinosRequest $request)
     {
         $nino = new Nino();
-        $nino->cod_nino = $request->cod_nino;
+        $nino->rut_nino = $request->rut_nino;
         $nino->nom_nino = $request->nom_nino;
         $nino->apell_nino = $request->apell_nino;
         $nino->foto_nino = $request->foto_nino;
         $nino->fecha_nac_nino = $request->fecha_nac_nino;
+        $nino->fecha_adm_nino = $request->fecha_adm_nino;
+        $nino->nom_padre_nino = $request->nom_padre_nino;
+        $nino->nom_madre_nino = $request->nom_madre_nino;
+        $nino->tel_nino = $request->tel_nino;
+        $nino->direccion_nino = $request->direccion_nino;
         $nino->nivel = $request->nivel;
         $nino->save();
     }
@@ -56,11 +61,16 @@ class NinoController extends Controller
      */
     public function update(NinosRequest $request, Nino $nino)
     {
-        $nino->cod_nino = $request->cod_nino;
+        $nino->rut_nino = $request->rut_nino;
         $nino->nom_nino = $request->nom_nino;
         $nino->apell_nino = $request->apell_nino;
         $nino->foto_nino = $request->foto_nino;
         $nino->fecha_nac_nino = $request->fecha_nac_nino;
+        $nino->fecha_adm_nino = $request->fecha_adm_nino;
+        $nino->nom_padre_nino = $request->nom_padre_nino;
+        $nino->nom_madre_nino = $request->nom_madre_nino;
+        $nino->tel_nino = $request->tel_nino;
+        $nino->direccion_nino = $request->direccion_nino;
         $nino->nivel = $request->nivel;
         $nino->save();
         return $nino;

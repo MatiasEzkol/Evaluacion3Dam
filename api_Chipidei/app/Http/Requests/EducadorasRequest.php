@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+// TODO: Request Educadoras
+
 class EducadorasRequest extends FormRequest
 {
     /**
@@ -24,18 +26,18 @@ class EducadorasRequest extends FormRequest
     public function rules()
     {
         return [
-            'cod_educadora'=>'required|unique:educadora,cod_educadora',
+            'rut_educadora'=>'required|unique:educadora,rut_educadora',
             'nom_educadora'=>'required|string|min:3|max:20',
             'apell_educadora'=>'required|string',
-            'fecha_nac_educadora'=>'required|before:today|after:1900-01-01',
+            'fecha_nac_educadora'=>'required|before:today|after:1900-01-01', //yyyy-mm-dd
             'nivel' => 'required|exists:nivel,cod_nivel',
         ];
     }
 
     public function messages(){
         return [
-            'cod_educadora.required' => 'Indique código de educadora',
-            'cod_educadora.unique' => 'El código :input ya existe en el sistema',
+            'rut_educadora.required' => 'Indique código de educadora',
+            'rut_educadora.unique' => 'El código :input ya existe en el sistema',
             'nom_educadora.required' => 'Indique nombre del producto',
             // 'nom_educadora.string' => 'El nombre solo puede contener carácteres',
             'nom_educadora.min' => 'El nombre debe contener al menos 3 carácteres',

@@ -10,7 +10,7 @@ class Educadora extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'educadora';
-    protected $primaryKey= 'cod_educadora';
+    protected $primaryKey= 'rut_educadora';
     public $incrementing= 'false';
     protected $keyType= 'string';
 

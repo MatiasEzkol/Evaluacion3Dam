@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('evento', function (Blueprint $table) { 
             $table->string('nino');
-            $table->foreign('nino')->references('cod_nino')->on('nino');
+            $table->foreign('nino')->references('rut_nino')->on('nino');
         });
     }
 
