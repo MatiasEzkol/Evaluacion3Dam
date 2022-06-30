@@ -28,6 +28,7 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 231, 98, 231),
         title: Text('Educadora'),
       ),
       body: Form(
@@ -106,6 +107,9 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
                     }
                     Navigator.pop(context);
                   },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 231, 98, 231))),
                 ),
               ),
             ],

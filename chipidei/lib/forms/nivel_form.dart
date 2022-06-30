@@ -21,6 +21,7 @@ class _NivelAgregarPageState extends State<NivelAgregarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 231, 98, 231),
         title: Text('Nivel'),
       ),
       body: Form(
@@ -79,6 +80,9 @@ class _NivelAgregarPageState extends State<NivelAgregarPage> {
                     }
                     Navigator.pop(context);
                   },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 231, 98, 231))),
                 ),
               ),
             ],
