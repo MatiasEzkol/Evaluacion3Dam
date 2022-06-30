@@ -75,6 +75,8 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
               ),
               campoFechaNacimiento(context),
               campoFechaAdmision(context),
+              //TODO: IMG
+
               TextFormField(
                 controller: nombreCtrl,
                 decoration: InputDecoration(labelText: '👨 Nombre del Padre'),

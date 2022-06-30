@@ -45,9 +45,13 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
 
                         return Slidable(
                             child: ListTile(
-                              leading: Icon(MdiIcons.account),
+                              leading: CircleAvatar(
+                                  // height: 100,
+                                  // width: 100, // fixed width and height
+                                  backgroundImage:
+                                      NetworkImage(nino['foto_nino'])),
                               title: Text(nino['nom_nino']),
-                              subtitle: Text(nino['cod_nino']),
+                              subtitle: Text(nino['rut_nino']),
                             ),
                             startActionPane: ActionPane(
                               motion: ScrollMotion(),
@@ -56,7 +60,7 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
                                   onPressed: (context) {
                                     MaterialPageRoute route = MaterialPageRoute(
                                       builder: (context) =>
-                                          PerfilNinoPage(nino['cod_nino']),
+                                          PerfilNinoPage(nino['rut_nino']),
                                     );
                                     Navigator.push(context, route)
                                         .then((value) {
@@ -74,7 +78,7 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
                               children: [
                                 SlidableAction(
                                   onPressed: (context) {
-                                    String cod_nino = nino['cod_nino'];
+                                    String cod_nino = nino['rut_nino'];
                                     confirmDialog(
                                             context, 'niño', nino['nom_nino'])
                                         .then((confirma) {

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class PerfilNinoPage extends StatefulWidget {
-  String codNino;
-  PerfilNinoPage(this.codNino, {Key? key}) : super(key: key);
+  String rutNino;
+  PerfilNinoPage(this.rutNino, {Key? key}) : super(key: key);
 
   @override
   State<PerfilNinoPage> createState() => _PerfilNinoPageState();
@@ -24,9 +24,10 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
           'Mi perfil',
           style: TextStyle(color: Colors.white),
         ),
+        backgroundColor: Colors.blue,
       ),
       body: FutureBuilder(
-          future: NinosProviders().getNino(widget.codNino),
+          future: NinosProviders().getNino(widget.rutNino),
           builder: (context, AsyncSnapshot snapshot) {
             if (!snapshot.hasData) {
               return Center(
@@ -34,7 +35,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
               );
             }
             var data = snapshot.data;
-            String codigo = data['cod_nino'];
+            String codigo = data['rut_nino'];
             String nombre = data['nom_nino'];
 
             return Padding(
@@ -46,7 +47,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                     height: 180,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.amber,
+                      color: Color.fromARGB(255, 179, 207, 255),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
@@ -57,8 +58,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(60),
                                 image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://cdn.pixabay.com/photo/2014/10/18/22/26/squirrel-493790_960_720.jpg"),
+                                  image: NetworkImage(data['foto_nino']),
                                 )),
                           ),
                           Padding(
@@ -71,28 +71,21 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                                   'Nombre: $nombre',
                                   style: TextStyle(
                                     fontSize: 25,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   ),
                                 ),
                                 Text(
                                   'Curso',
                                   style: TextStyle(
                                       fontSize: 20,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       height: 1.6),
-                                ),
-                                Text(
-                                  'Profe',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      height: 1.3),
                                 ),
                                 Text(
                                   'Rut: $codigo',
                                   style: TextStyle(
                                       fontSize: 20,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       height: 1.3),
                                 ),
                               ],
@@ -126,7 +119,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                     height: 250,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.amber,
+                      color: Color.fromARGB(255, 179, 207, 255),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(20),
@@ -188,7 +181,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                     height: 170,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.amber,
+                      color: Color.fromARGB(255, 179, 207, 255),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(20),
