@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [GlobalMaterialLocalizations.delegate],
-      supportedLocales: [const Locale('es')],
       title: 'CHIPIDEI',
       theme: ThemeData(
         // This is the theme of your application.

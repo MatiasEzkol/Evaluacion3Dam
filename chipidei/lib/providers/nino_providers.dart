@@ -17,19 +17,35 @@ class NinoProviders {
     }
   }
 
-  Future<LinkedHashMap<String, dynamic>> ninoAgregar(String cod_nino,
-      String nom_nino, String apell_nino, String fecha_nacimiento) async {
+  Future<LinkedHashMap<dynamic, dynamic>> ninoAgregar({
+    String? rut_nino,
+    String? nom_nino,
+    String? apell_nino,
+    String? fecha_nac_nino,
+    String? fecha_adm_nino,
+    String? nom_padre_nino,
+    String? nom_madre_nino,
+    String? tel_nino,
+    String? direccion_nino,
+    String? nivel,
+  }) async {
     var uri = Uri.parse('$apiURL/nino');
     var respuesta = await http.post(uri,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Accept': 'application/json'
         },
-        body: jsonEncode(<String, dynamic>{
-          'cod_nino': cod_nino,
+        body: jsonEncode(<dynamic, dynamic>{
+          'rut_nino': rut_nino,
           'nom_nino': nom_nino,
           'apell_nino': apell_nino,
-          'fecha_nacimiento': fecha_nacimiento
+          'fecha_nac_nino': fecha_nac_nino,
+          'fecha_adm_nino': fecha_adm_nino,
+          'nom_padre_nino': nom_padre_nino,
+          'nom_madre_nino': nom_madre_nino,
+          'tel_nino': tel_nino,
+          'direccion_nino': direccion_nino,
+          'nivel': nivel
         }));
     return json.decode(respuesta.body);
   }

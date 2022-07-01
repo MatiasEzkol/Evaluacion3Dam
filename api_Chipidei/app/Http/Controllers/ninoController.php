@@ -30,7 +30,6 @@ class NinoController extends Controller
         $nino->rut_nino = $request->rut_nino;
         $nino->nom_nino = $request->nom_nino;
         $nino->apell_nino = $request->apell_nino;
-        $nino->foto_nino = $request->foto_nino;
         $nino->fecha_nac_nino = $request->fecha_nac_nino;
         $nino->fecha_adm_nino = $request->fecha_adm_nino;
         $nino->nom_padre_nino = $request->nom_padre_nino;
@@ -64,7 +63,6 @@ class NinoController extends Controller
         $nino->rut_nino = $request->rut_nino;
         $nino->nom_nino = $request->nom_nino;
         $nino->apell_nino = $request->apell_nino;
-        $nino->foto_nino = $request->foto_nino;
         $nino->fecha_nac_nino = $request->fecha_nac_nino;
         $nino->fecha_adm_nino = $request->fecha_adm_nino;
         $nino->nom_padre_nino = $request->nom_padre_nino;
