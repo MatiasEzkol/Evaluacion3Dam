@@ -45,12 +45,8 @@ class _ListaNinosPageState extends State<ListaNinosPage> {
 
                         return Slidable(
                             child: ListTile(
-                              leading: CircleAvatar(
-                                  // height: 100,
-                                  // width: 100, // fixed width and height
-                                  backgroundImage:
-                                      NetworkImage(nino['foto_nino'])),
-                              title: Text(nino['nom_nino']),
+                              title: Text(
+                                  nino['nom_nino'] + ' ' + nino['apell_nino']),
                               subtitle: Text(nino['rut_nino']),
                             ),
                             startActionPane: ActionPane(

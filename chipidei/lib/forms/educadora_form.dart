@@ -15,10 +15,12 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
   DateTime fechaIngreso = DateTime.now();
   DateTime fechaNacimiento = DateTime.now();
   var ffecha = DateFormat('dd-MM-yyyy');
-  TextEditingController codigoCtrl = TextEditingController();
+  TextEditingController rutCtrl = TextEditingController();
   TextEditingController nombreCtrl = TextEditingController();
   TextEditingController apellidoCtrl = TextEditingController();
-  TextEditingController fechaCtrl = TextEditingController();
+  TextEditingController telefonoCtrl = TextEditingController();
+  TextEditingController direccionCtrl = TextEditingController();
+  TextEditingController nivelCtrl = TextEditingController();
 
   String errCodigo = '';
   String errNombre = '';
@@ -38,9 +40,9 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
           child: ListView(
             children: [
               TextFormField(
-                controller: codigoCtrl,
+                controller: rutCtrl,
                 decoration: InputDecoration(
-                    labelText: 'Código Educadora', icon: new Icon(Icons.code)),
+                    labelText: 'Rut Educadora', icon: new Icon(Icons.code)),
               ),
               Container(
                 width: double.infinity,
@@ -63,10 +65,15 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
                 ),
               ),
               TextFormField(
-                controller: nombreCtrl,
+                controller: apellidoCtrl,
                 decoration: InputDecoration(
                     labelText: 'Apellido Educadora',
                     icon: new Icon(MdiIcons.accountBox)),
+              ),
+              TextFormField(
+                controller: nivelCtrl,
+                decoration: InputDecoration(
+                    labelText: 'Nivel', icon: new Icon(Icons.book)),
               ),
               Container(
                 width: double.infinity,
@@ -77,16 +84,35 @@ class _EducadoraAgregarPageState extends State<EducadoraAgregarPage> {
               ),
               campoFechaNacimiento(context),
               campoFechaAdmision(context),
+              TextFormField(
+                controller: telefonoCtrl,
+                decoration: InputDecoration(
+                  labelText: '📞 Telefono de Contacto',
+                  //icon: new Icon(MdiIcons.phone)
+                ),
+              ),
+              TextFormField(
+                controller: direccionCtrl,
+                decoration: InputDecoration(
+                  labelText: '🏡 Dirección',
+                  //icon: new Icon(MdiIcons.phone)
+                ),
+              ),
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
                   child: Text('Agregar Educadora'),
                   onPressed: () async {
                     var respuesta = await EducadoraProviders().educadoraAgregar(
-                        codigoCtrl.text.trim(),
-                        nombreCtrl.text.trim(),
-                        apellidoCtrl.text.trim(),
-                        fechaCtrl.text.trim());
+                      rutCtrl.text.trim(),
+                      nombreCtrl.text.trim(),
+                      apellidoCtrl.text.trim(),
+                      fechaNacimiento.toString(),
+                      fechaIngreso.toString(),
+                      telefonoCtrl.text.trim(),
+                      direccionCtrl.text.trim(),
+                      nivelCtrl.text.trim(),
+                    );
 
                     if (respuesta['message'] != null) {
                       //cod

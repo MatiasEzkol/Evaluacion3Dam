@@ -46,7 +46,9 @@ class _ListaEduPageState extends State<ListaEduPage> {
                         return Slidable(
                             child: ListTile(
                               leading: Icon(MdiIcons.account),
-                              title: Text(educadora['nom_educadora']),
+                              title: Text(educadora['nom_educadora'] +
+                                  ' ' +
+                                  educadora['apell_educadora']),
                               subtitle: Text(educadora['rut_educadora']),
                             ),
                             startActionPane: ActionPane(

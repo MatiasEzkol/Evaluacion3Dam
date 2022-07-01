@@ -18,10 +18,14 @@ class EducadoraProviders {
   }
 
   Future<LinkedHashMap<String, dynamic>> educadoraAgregar(
-      String cod_educadora,
-      String nombre_educadora,
-      String apellido_educadora,
-      String fecha_nacimiento) async {
+      String rut_educadora,
+      String nom_educadora,
+      String apell_educadora,
+      String fecha_nac_educadora,
+      String fecha_adm_educadora,
+      String tel_educadora,
+      String direccion_educadora,
+      String nivel) async {
     var uri = Uri.parse('$apiURL/educadora');
     var respuesta = await http.post(uri,
         headers: <String, String>{
@@ -29,16 +33,20 @@ class EducadoraProviders {
           'Accept': 'application/json'
         },
         body: jsonEncode(<String, dynamic>{
-          'cod_educadora': cod_educadora,
-          'nombre_educadora': nombre_educadora,
-          'apellido_educadora': apellido_educadora,
-          'fecha_nacimiento': fecha_nacimiento
+          'rut_educadora': rut_educadora,
+          'nom_educadora': nom_educadora,
+          'apell_educadora': apell_educadora,
+          'fecha_nac_educadora': fecha_nac_educadora,
+          'fecha_adm_educadora': fecha_adm_educadora,
+          'tel_educadora': tel_educadora,
+          'direccion_educadora': direccion_educadora,
+          'nivel': nivel
         }));
     return json.decode(respuesta.body);
   }
 
-  Future<bool> educadoraBorrar(String cod_educadora) async {
-    var uri = Uri.parse('$apiURL/educadora/$cod_educadora');
+  Future<bool> educadoraBorrar(String rut_educadora) async {
+    var uri = Uri.parse('$apiURL/educadora/$rut_educadora');
     var respuesta = await http.delete(uri);
     return respuesta.statusCode == 200;
   }

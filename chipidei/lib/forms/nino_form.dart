@@ -146,7 +146,6 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
                         direccionCtrl.text.trim(),
                         nivelCtrl.text.trim(),
                       );
-                      print(NinoProviders);
                       if (respuesta['message'] != null) {
                         //cod
                         if (respuesta['errors']['rut_nino'] != null) {

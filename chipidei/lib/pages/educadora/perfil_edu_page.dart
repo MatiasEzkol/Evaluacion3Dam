@@ -1,4 +1,5 @@
 import 'package:chipidei/providers/educadoras_providers.dart';
+import 'package:chipidei/utils/truncate.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'dart:developer';
@@ -38,6 +39,8 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
             print(data);
             String codigo = data['rut_educadora'];
             String nombre = data['nom_educadora'];
+            String apellido = data['apell_educadora'];
+            String nivel = data['nivel'];
 
             return Padding(
               padding: const EdgeInsets.all(15),
@@ -70,9 +73,9 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Nombre: $nombre',
+                                  'Nombre: $nombre $apellido',
                                   style: TextStyle(
-                                    fontSize: 25,
+                                    fontSize: 20,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -84,7 +87,7 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                                       height: 1.6),
                                 ),
                                 Text(
-                                  'Curso:',
+                                  'Curso: $nivel',
                                   style: TextStyle(
                                       fontSize: 20,
                                       color: Colors.white,
@@ -118,7 +121,7 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                   Spacer(),
                   Container(
                     width: double.infinity,
-                    height: 250,
+                    height: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.amber,
@@ -132,7 +135,7 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                           Text(
                             'Información de contacto',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                           Row(
@@ -140,37 +143,19 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                             children: [
                               Text(
                                 'Fecha de nacimiento',
-                                style: TextStyle(fontSize: 17, height: 2.8),
+                                style: TextStyle(fontSize: 20, height: 2.8),
                               ),
-                              Text('12-02-2004',
-                                  style: TextStyle(fontSize: 17, height: 2.5)),
+                              Text(truncate(data['fecha_nac_educadora'], 10),
+                                  style: TextStyle(fontSize: 20, height: 2.5)),
                             ],
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Fecha de admisión',
-                                  style: TextStyle(fontSize: 17, height: 2.5)),
-                              Text('12-04-2022',
-                                  style: TextStyle(fontSize: 17, height: 2.5)),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Nombre de mamá',
-                                  style: TextStyle(fontSize: 17, height: 2.5)),
-                              Text('Sra. Victoria',
-                                  style: TextStyle(fontSize: 17, height: 2.5)),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Nombre de papá',
-                                  style: TextStyle(fontSize: 17, height: 2.5)),
-                              Text('Sr. Benjamin',
-                                  style: TextStyle(fontSize: 17, height: 2.5)),
+                                  style: TextStyle(fontSize: 20, height: 2.5)),
+                              Text(truncate(data['fecha_nac_educadora'], 10),
+                                  style: TextStyle(fontSize: 20, height: 2.5)),
                             ],
                           ),
                         ],
@@ -180,7 +165,7 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                   Spacer(),
                   Container(
                     width: double.infinity,
-                    height: 170,
+                    height: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.amber,
@@ -192,9 +177,9 @@ class _PerfilEduPageState extends State<PerfilEduPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Información personal',
+                            'Información contacto',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                           Row(

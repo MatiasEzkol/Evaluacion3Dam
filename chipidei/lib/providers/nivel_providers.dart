@@ -26,8 +26,8 @@ class NivelProviders {
           'Accept': 'application/json'
         },
         body: jsonEncode(<String, dynamic>{
-          'cod_nino': cod_nivel,
-          'nom_nino': nom_nivel,
+          'cod_nivel': cod_nivel,
+          'nom_nivel': nom_nivel,
         }));
     return json.decode(respuesta.body);
   }

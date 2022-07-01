@@ -12,7 +12,7 @@ class _EventoAgregarPageState extends State<EventoAgregarPage> {
   final formKey = GlobalKey<FormState>();
   TextEditingController codigoCtrl = TextEditingController();
   TextEditingController descripcionCtrl = TextEditingController();
-  TextEditingController fechaCtrl = TextEditingController();
+  TextEditingController ninoCtrl = TextEditingController();
 
   String errCodigo = '';
   String errDescripcion = '';
@@ -56,7 +56,7 @@ class _EventoAgregarPageState extends State<EventoAgregarPage> {
                 ),
               ),
               TextFormField(
-                controller: descripcionCtrl,
+                controller: ninoCtrl,
                 decoration: InputDecoration(
                     labelText: 'Niño con Evento', icon: new Icon(Icons.boy)),
               ),
@@ -75,7 +75,7 @@ class _EventoAgregarPageState extends State<EventoAgregarPage> {
                       var respuesta = await EventosProviders().eventoAgregar(
                           codigoCtrl.text.trim(),
                           descripcionCtrl.text.trim(),
-                          fechaCtrl.text.trim());
+                          ninoCtrl.text.trim());
 
                       if (respuesta['message'] != null) {
                         //cod

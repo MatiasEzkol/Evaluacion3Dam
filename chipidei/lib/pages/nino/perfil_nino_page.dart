@@ -1,4 +1,5 @@
 import 'package:chipidei/providers/ninos_providers.dart';
+import 'package:chipidei/utils/truncate.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -37,6 +38,8 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
             var data = snapshot.data;
             String codigo = data['rut_nino'];
             String nombre = data['nom_nino'];
+            String apellido = data['apell_nino'];
+            String nivel = data['nivel'];
 
             return Padding(
               padding: const EdgeInsets.all(15),
@@ -53,14 +56,6 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                       padding: const EdgeInsets.all(10),
                       child: Row(
                         children: [
-                          Container(
-                            padding: EdgeInsets.all(60),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(60),
-                                image: DecorationImage(
-                                  image: NetworkImage(data['foto_nino']),
-                                )),
-                          ),
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child: Column(
@@ -68,14 +63,14 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Nombre: $nombre',
+                                  'Nombre: $nombre $apellido',
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: Colors.black,
                                   ),
                                 ),
                                 Text(
-                                  'Curso',
+                                  'Curso: $nivel',
                                   style: TextStyle(
                                       fontSize: 20,
                                       color: Colors.black,
@@ -130,7 +125,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                           Text(
                             'Información personal',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                           Row(
@@ -140,7 +135,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                                 'Fecha de nacimiento',
                                 style: TextStyle(fontSize: 17, height: 2.8),
                               ),
-                              Text('12-02-2004',
+                              Text(truncate(data['fecha_nac_nino'], 10),
                                   style: TextStyle(fontSize: 17, height: 2.5)),
                             ],
                           ),
@@ -149,7 +144,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                             children: [
                               Text('Fecha de admisión',
                                   style: TextStyle(fontSize: 17, height: 2.5)),
-                              Text('12-04-2022',
+                              Text(truncate(data['fecha_adm_nino'], 10),
                                   style: TextStyle(fontSize: 17, height: 2.5)),
                             ],
                           ),
@@ -158,7 +153,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                             children: [
                               Text('Nombre de mamá',
                                   style: TextStyle(fontSize: 17, height: 2.5)),
-                              Text('Sra. Victoria',
+                              Text(data['nom_madre_nino'],
                                   style: TextStyle(fontSize: 17, height: 2.5)),
                             ],
                           ),
@@ -167,7 +162,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                             children: [
                               Text('Nombre de papá',
                                   style: TextStyle(fontSize: 17, height: 2.5)),
-                              Text('Sr. Benjamin',
+                              Text(data['nom_padre_nino'],
                                   style: TextStyle(fontSize: 17, height: 2.5)),
                             ],
                           ),
@@ -190,9 +185,9 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Información personal',
+                            'Información contacto',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                           Row(
@@ -202,7 +197,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                                 'Número',
                                 style: TextStyle(fontSize: 17, height: 2.8),
                               ),
-                              Text('+569 XXXX XXXX',
+                              Text(data['tel_nino'],
                                   style: TextStyle(fontSize: 17, height: 2.5)),
                             ],
                           ),
@@ -211,7 +206,7 @@ class _PerfilNinoPageState extends State<PerfilNinoPage> {
                             children: [
                               Text('Dirección',
                                   style: TextStyle(fontSize: 17, height: 2.5)),
-                              Text('28. Bird Spring Lane United States',
+                              Text(data['direccion_nino'],
                                   style: TextStyle(fontSize: 17, height: 2.5)),
                             ],
                           ),

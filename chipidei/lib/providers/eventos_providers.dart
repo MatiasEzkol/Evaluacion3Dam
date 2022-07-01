@@ -18,7 +18,7 @@ class EventosProviders {
   }
 
   Future<LinkedHashMap<String, dynamic>> eventoAgregar(
-      String cod_evento, String descripcion, String fecha_evento) async {
+      String cod_evento, String descripcion_evento, String nino) async {
     var uri = Uri.parse('$apiURL/evento');
     var respuesta = await http.post(uri,
         headers: <String, String>{
@@ -27,8 +27,8 @@ class EventosProviders {
         },
         body: jsonEncode(<String, dynamic>{
           'cod_evento': cod_evento,
-          'descripcion': descripcion,
-          'fecha_evento': fecha_evento
+          'descripcion_evento': descripcion_evento,
+          'nino': nino
         }));
     return json.decode(respuesta.body);
   }
