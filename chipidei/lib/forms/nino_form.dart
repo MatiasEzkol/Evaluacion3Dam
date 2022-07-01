@@ -20,15 +20,17 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
   final formKey = GlobalKey<FormState>();
   DateTime fechaNacimiento = DateTime.now();
   DateTime fechaAdmision = DateTime.now();
-  var ffecha = DateFormat('dd-MM-yyyy');
+  var ffecha = DateFormat('yyyy-MM-dd');
 
-  TextEditingController codigoCtrl = TextEditingController();
+  TextEditingController rutCtrl = TextEditingController();
   TextEditingController nombreNinoCtrl = TextEditingController();
   TextEditingController apellidoNinoCtrl = TextEditingController();
   TextEditingController nombrePadreCtrl = TextEditingController();
   TextEditingController nombreMadreCtrl = TextEditingController();
   TextEditingController contactoCtrl = TextEditingController();
-  TextEditingController fechaCtrl = TextEditingController();
+  TextEditingController direccionCtrl = TextEditingController();
+  TextEditingController nivelCtrl = TextEditingController();
+
   String errCodigo = '';
   String errNombre = '';
   String errApellido = '';
@@ -47,9 +49,9 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
           child: ListView(
             children: [
               TextFormField(
-                controller: codigoCtrl,
+                controller: rutCtrl,
                 decoration: InputDecoration(
-                    labelText: 'Código Niño', icon: new Icon(Icons.code)),
+                    labelText: 'Rut Niño', icon: new Icon(Icons.code)),
               ),
               Container(
                 width: double.infinity,
@@ -82,6 +84,11 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
                   style: TextStyle(color: Colors.red),
                 ),
               ),
+              TextFormField(
+                controller: nivelCtrl,
+                decoration: InputDecoration(
+                    labelText: 'Nivel', icon: new Icon(Icons.book)),
+              ),
               campoFechaNacimiento(context),
               campoFechaAdmision(context),
               TextFormField(
@@ -111,7 +118,14 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
               TextFormField(
                 controller: contactoCtrl,
                 decoration: InputDecoration(
-                  labelText: '📞Telefono de Contacto',
+                  labelText: '📞 Telefono de Contacto',
+                  //icon: new Icon(MdiIcons.phone)
+                ),
+              ),
+              TextFormField(
+                controller: direccionCtrl,
+                decoration: InputDecoration(
+                  labelText: '🏡 Dirección',
                   //icon: new Icon(MdiIcons.phone)
                 ),
               ),
@@ -121,17 +135,18 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
                     child: Text('Agregar Perfil de Niño'),
                     onPressed: () async {
                       var respuesta = await NinoProviders().ninoAgregar(
-                          rut_nino: codigoCtrl.text.trim(),
-                          nom_nino: nombreNinoCtrl.text.trim(),
-                          apell_nino: apellidoNinoCtrl.text.trim(),
-                          fecha_nac_nino: fechaNacimiento.toString(),
-                          fecha_adm_nino: fechaAdmision.toString(),
-                          nom_padre_nino: nombrePadreCtrl.text.trim(),
-                          nom_madre_nino: nombreMadreCtrl.text.trim(),
-                          tel_nino: contactoCtrl.text.trim(),
-                          direccion_nino: 'direccion_nino',
-                          nivel: '2');
-                      log('la respuesta es :$respuesta');
+                        rutCtrl.text.trim(),
+                        nombreNinoCtrl.text.trim(),
+                        apellidoNinoCtrl.text.trim(),
+                        fechaNacimiento.toString(),
+                        fechaAdmision.toString(),
+                        nombrePadreCtrl.text.trim(),
+                        nombreMadreCtrl.text.trim(),
+                        contactoCtrl.text.trim(),
+                        direccionCtrl.text.trim(),
+                        nivelCtrl.text.trim(),
+                      );
+                      print(NinoProviders);
                       if (respuesta['message'] != null) {
                         //cod
                         if (respuesta['errors']['rut_nino'] != null) {
@@ -216,19 +231,4 @@ class _NinoAgregarPageState extends State<NinoAgregarPage> {
       ],
     );
   }
-
-  // Future agregarNino() async {
-  //   var respuesta = await NinosProviders().agregarNino(
-  //       rut_nino: codigoCtrl.text.trim(),
-  //       nom_nino: nombreNinoCtrl.text.trim(),
-  //       apell_nino: apellidoNinoCtrl.text.trim(),
-  //       fecha_nac_nino: fechaNacimiento,
-  //       fecha_adm_nino: fechaAdmision,
-  //       nom_padre_nino: nombrePadreCtrl.text.trim(),
-  //       nom_madre_nino: nombreMadreCtrl.text.trim(),
-  //       tel_nino: contactoCtrl.text.trim(),
-  //       direccion_nino: "hola mundo",
-  //       foto_nino: baseimage);
-  //   return respuesta;
-  // }
 }
