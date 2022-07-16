@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "789301142690",
+    "project_id": "chipidei",
+    "storage_bucket": "chipidei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789301142690:android:6d6c9096db7ac231a363fb",
+        "android_client_info": {
+          "package_name": "cl.usmdam.chipidei"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789301142690-u835enqejuvongc4lphvk51ljguge35g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAulWVgB0kYeqI2mzgeegckaB6r42qk6Ks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789301142690-u835enqejuvongc4lphvk51ljguge35g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

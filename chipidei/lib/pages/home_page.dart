@@ -8,7 +8,12 @@ import 'package:chipidei/pages/nivel/lista_niveles_page.dart';
 import 'package:chipidei/forms/eventos_form.dart';
 import 'package:chipidei/forms/nino_form.dart';
 import 'package:chipidei/forms/nivel_form.dart';
+import 'package:chipidei/pages/usuario/login_page.dart';
+import 'package:chipidei/widgets/panel_user_email.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,6 +50,37 @@ class _HomePageState extends State<HomePage> {
               'Bienvenidos al Jardin CHIPIDEI',
               style: TextStyle(color: Colors.white),
             ),
+            leading: Icon(
+              MdiIcons.firebase,
+              color: Colors.amber,
+            ),
+            actions: [
+              PopupMenuButton(
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    child: Text('Salir'),
+                    value: 'logout',
+                  ),
+                  PopupMenuItem(
+                    child: Text('Otro'),
+                    value: 'otro',
+                  ),
+                ],
+                onSelected: (opcion) async {
+                  if (opcion == 'logout') {
+                    await FirebaseAuth.instance.signOut();
+
+                    SharedPreferences sp =
+                        await SharedPreferences.getInstance();
+                    sp.remove('userEmail');
+
+                    MaterialPageRoute route =
+                        MaterialPageRoute(builder: (context) => LoginPage());
+                    Navigator.pushReplacement(context, route);
+                  }
+                },
+              )
+            ],
           ),
           body: Container(
             padding: EdgeInsets.only(top: 170, bottom: 40, right: 10, left: 10),
@@ -56,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.topCenter)),
             child: Column(
               children: <Widget>[
+                // PanelUserEmail(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
