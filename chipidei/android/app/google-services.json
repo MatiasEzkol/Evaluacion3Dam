@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "789301142690-tdikpgrs7olgps3qjq0mu00hjgqcrg7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cl.usmdam.chipidei",
+            "certificate_hash": "098ff10b3eb749fcba6b0250e2206e35cb32fb02"
+          }
+        },
+        {
           "client_id": "789301142690-u835enqejuvongc4lphvk51ljguge35g.apps.googleusercontent.com",
           "client_type": 3
         }
