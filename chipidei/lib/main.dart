@@ -1,4 +1,6 @@
 import 'package:chipidei/pages/home_page.dart';
+import 'package:chipidei/pages/noticias/noticias_page.dart';
+import 'package:chipidei/pages/noticias/registro_noticias_page.dart';
 import 'package:chipidei/pages/usuario/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
             }
             if (snapshot.connectionState == ConnectionState.active) {
               if (snapshot.data == null) {
-                return LoginPage();
+                return RegistroNoticiasPage();
               } else {
                 return HomePage();
               }
