@@ -1,4 +1,6 @@
 import 'package:chipidei/pages/home_page.dart';
+import 'package:chipidei/pages/noticias/noticias_page.dart';
+import 'package:chipidei/pages/noticias/registro_noticias_page.dart';
 import 'package:chipidei/pages/usuario/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: LoginPage(),
+      home: RegistroNoticiasPage(),
     );
   }
 }
