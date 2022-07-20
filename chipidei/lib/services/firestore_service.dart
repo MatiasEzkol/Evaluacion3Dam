@@ -32,11 +32,11 @@ class FirestoreService {
   }
 
   //editar noticias
-  Future noticiasEditar(String tituloId, String nombre, String descripcion) {
+  Future noticiasEditar(String tituloId, String titulo, String descripcion) {
     return FirebaseFirestore.instance
         .collection('noticias')
         .doc(tituloId)
         .update(
-            {'titulo': tituloId, 'nombre': nombre, 'descripcion': descripcion});
+            {'titulo': titulo, 'descripcion': descripcion});
   }
 }

@@ -1,6 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:developer';
+
+import 'package:chipidei/pages/noticias/noticias_editar.dart';
+import 'package:chipidei/services/firestore_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class NoticiasPage extends StatefulWidget {
   NoticiasPage({Key? key}) : super(key: key);
@@ -34,7 +40,47 @@ class _NoticiasPageState extends State<NoticiasPage> {
           Divider(),
           Expanded(
             child: Column(children: [
-              Noticias(),
+              Expanded(
+                  child: StreamBuilder(
+                      stream: FirestoreService().noticias(),
+                      builder:
+                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData ||
+                            snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return ListView.separated(
+                  separatorBuilder: (context, index) => Divider(),
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    var producto = snapshot.data!.docs[index];
+
+                    return ListTile(
+                      leading: Icon(MdiIcons.cube),
+                      title: Text('${producto['titulo']}'),
+                      subtitle: Text('Descripcion: ${producto['descripcion']}'),
+                      // trailing: TextButton(
+                      //   child: Icon(
+                      //     MdiIcons.trashCan,
+                      //     color: Colors.red,
+                      //   ),
+                      //   onPressed: () {
+                      //     // print(producto.id);
+                      //     FirestoreService().noticiasBorrar(producto.id);
+                      //   },
+                      // ),
+                      // onLongPress: () {
+                      //   MaterialPageRoute route = MaterialPageRoute(
+                      //     builder: (context) => NoticiasEditar(producto.id),
+                      //   );
+                      //   Navigator.push(context, route);
+                      // },
+                    );
+                  },);
+                      })),
             ]),
           ),
         ],

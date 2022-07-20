@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             }
             if (snapshot.connectionState == ConnectionState.active) {
               if (snapshot.data == null) {
-                return RegistroNoticiasPage();
+                return NoticiasPage();
               } else {
                 return HomePage();
               }
