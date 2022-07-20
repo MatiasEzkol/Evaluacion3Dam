@@ -8,6 +8,7 @@ import 'package:chipidei/pages/nivel/lista_niveles_page.dart';
 import 'package:chipidei/forms/eventos_form.dart';
 import 'package:chipidei/forms/nino_form.dart';
 import 'package:chipidei/forms/nivel_form.dart';
+import 'package:chipidei/pages/noticias/gestion_noticias_page.dart';
 import 'package:chipidei/pages/usuario/login_page.dart';
 import 'package:chipidei/widgets/panel_user_email.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,21 +64,21 @@ class _HomePageState extends State<HomePage> {
                     value: 'logout',
                   ),
                   PopupMenuItem(
-                    child: Text('Otro'),
-                    value: 'otro',
+                    child: Text('Gestión de noticias'),
+                    value: 'gestion-noticias',
                   ),
                 ],
                 onSelected: (opcion) async {
                   if (opcion == 'logout') {
                     await FirebaseAuth.instance.signOut();
                     await GoogleSignIn().signOut();
-                    SharedPreferences sp =
-                        await SharedPreferences.getInstance();
-                    sp.remove('userEmail');
-
-                    MaterialPageRoute route =
-                        MaterialPageRoute(builder: (context) => LoginPage());
-                    Navigator.pushReplacement(context, route);
+                  }
+                  if (opcion == 'gestion-noticias') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GestionNoticiasPage()),
+                    );
                   }
                 },
               )

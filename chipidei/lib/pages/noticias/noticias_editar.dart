@@ -2,8 +2,8 @@ import 'package:chipidei/services/firestore_service.dart';
 import 'package:flutter/material.dart';
 
 class NoticiasEditar extends StatefulWidget {
-  String productoId;
-  NoticiasEditar(this.productoId, {Key? key}) : super(key: key);
+  String noticiaId;
+  NoticiasEditar(this.noticiaId, {Key? key}) : super(key: key);
 
   @override
   State<NoticiasEditar> createState() => _NoticiasEditarState();
@@ -17,14 +17,14 @@ class _NoticiasEditarState extends State<NoticiasEditar> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Producto'),
+        title: Text('Editar Noticia'),
         backgroundColor: Color(0xFF363942),
       ),
       body: Form(
         child: Padding(
           padding: EdgeInsets.all(5),
           child: FutureBuilder(
-              future: FirestoreService().getNoticia(widget.productoId),
+              future: FirestoreService().getNoticia(widget.noticiaId),
               builder: (context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) {
                   return Center(
@@ -32,9 +32,9 @@ class _NoticiasEditarState extends State<NoticiasEditar> {
                   );
                 }
 
-                var producto = snapshot.data;
-                tituloCtrl.text = producto['titulo'];
-                descripcionCtrl.text = producto['descripcion'];
+                var noticia = snapshot.data;
+                tituloCtrl.text = noticia['titulo'];
+                descripcionCtrl.text = noticia['descripcion'];
 
                 return ListView(
                   children: [
@@ -44,17 +44,17 @@ class _NoticiasEditarState extends State<NoticiasEditar> {
                       child: Row(
                         children: [
                           Text(
-                            'Id Producto:',
+                            'Codigo noticia:',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Text(widget.productoId),
+                          Text(widget.noticiaId),
                         ],
                       ),
                     ),
                     TextFormField(
                       controller: tituloCtrl,
                       decoration: InputDecoration(
-                        labelText: 'titulo Producto',
+                        labelText: 'Titulo noticia',
                       ),
                     ),
                     TextFormField(
@@ -69,13 +69,13 @@ class _NoticiasEditarState extends State<NoticiasEditar> {
                         style: ElevatedButton.styleFrom(
                           primary: Colors.purple,
                         ),
-                        child: Text('Editar Producto'),
+                        child: Text('Editar noticia'),
                         onPressed: () async {
                           String titulo = tituloCtrl.text.trim();
                           String descripcion = descripcionCtrl.text.trim();
 
                           FirestoreService().noticiasEditar(
-                              widget.productoId, titulo, descripcion);
+                              widget.noticiaId, titulo, descripcion);
                           Navigator.pop(context);
                         },
                       ),

@@ -28,7 +28,23 @@ class _LoginPageState extends State<LoginPage> {
           Padding(
             padding: EdgeInsets.only(right: 20.0),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                    try {
+                      GoogleSignInAccount? googleUser =
+                          await GoogleSignIn().signIn();
+                      GoogleSignInAuthentication? googleAuth =
+                          await googleUser?.authentication;
+                      AuthCredential credential = GoogleAuthProvider.credential(
+                          accessToken: googleAuth?.accessToken,
+                          idToken: googleAuth?.idToken);
+                      UserCredential userCredential = await FirebaseAuth
+                          .instance
+                          .signInWithCredential(credential);
+                      log('${userCredential.user?.displayName}');
+                    } catch (e) {
+                      log(e.toString());
+                    }
+                  },
               child: Text("Autenticarse"),
             ),
           ),

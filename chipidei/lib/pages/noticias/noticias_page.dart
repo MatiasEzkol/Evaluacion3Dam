@@ -7,6 +7,7 @@ import 'package:chipidei/services/firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,19 +33,33 @@ class _NoticiasPageState extends State<NoticiasPage> {
             margin: EdgeInsets.all(8),
             child: Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child: TextButton(
-                onPressed: () {
-                  MaterialPageRoute route = MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  );
-                  Navigator.push(context, route).then((value) {
-                    setState(() {});
-                  });
+              child: ElevatedButton(
+                onPressed: () async {
+                  try {
+                    GoogleSignInAccount? googleUser =
+                        await GoogleSignIn().signIn();
+                    GoogleSignInAuthentication? googleAuth =
+                        await googleUser?.authentication;
+                    AuthCredential credential = GoogleAuthProvider.credential(
+                        accessToken: googleAuth?.accessToken,
+                        idToken: googleAuth?.idToken);
+                    UserCredential userCredential = await FirebaseAuth.instance
+                        .signInWithCredential(credential);
+                  } catch (e) {
+                    log(e.toString());
+                  }
                 },
-                child: Text("Autenticarse"),
+                child: Icon(MdiIcons.google),
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 81, 3, 82))),
+                  shape: MaterialStateProperty.all(CircleBorder()),
+                  backgroundColor: MaterialStateProperty.all(
+                      Colors.blue), // <-- Button color
+                  overlayColor:
+                      MaterialStateProperty.resolveWith<Color?>((states) {
+                    if (states.contains(MaterialState.pressed))
+                      return Colors.red; // <-- Splash color
+                  }),
+                ),
               ),
             ),
           ),
@@ -70,33 +85,35 @@ class _NoticiasPageState extends State<NoticiasPage> {
                           );
                         }
                         return ListView.separated(
-                  separatorBuilder: (context, index) => Divider(),
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: (context, index) {
-                    var producto = snapshot.data!.docs[index];
+                          separatorBuilder: (context, index) => Divider(),
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            var producto = snapshot.data!.docs[index];
 
-                    return ListTile(
-                      leading: Icon(MdiIcons.cube),
-                      title: Text('${producto['titulo']}'),
-                      subtitle: Text('Descripcion: ${producto['descripcion']}'),
-                      // trailing: TextButton(
-                      //   child: Icon(
-                      //     MdiIcons.trashCan,
-                      //     color: Colors.red,
-                      //   ),
-                      //   onPressed: () {
-                      //     // print(producto.id);
-                      //     FirestoreService().noticiasBorrar(producto.id);
-                      //   },
-                      // ),
-                      // onLongPress: () {
-                      //   MaterialPageRoute route = MaterialPageRoute(
-                      //     builder: (context) => NoticiasEditar(producto.id),
-                      //   );
-                      //   Navigator.push(context, route);
-                      // },
-                    );
-                  },);
+                            return ListTile(
+                              leading: Icon(MdiIcons.cube),
+                              title: Text('${producto['titulo']}'),
+                              subtitle: Text(
+                                  'Descripcion: ${producto['descripcion']}'),
+                              // trailing: TextButton(
+                              //   child: Icon(
+                              //     MdiIcons.trashCan,
+                              //     color: Colors.red,
+                              //   ),
+                              //   onPressed: () {
+                              //     // print(producto.id);
+                              //     FirestoreService().noticiasBorrar(producto.id);
+                              //   },
+                              // ),
+                              // onLongPress: () {
+                              //   MaterialPageRoute route = MaterialPageRoute(
+                              //     builder: (context) => NoticiasEditar(producto.id),
+                              //   );
+                              //   Navigator.push(context, route);
+                              // },
+                            );
+                          },
+                        );
                       })),
             ]),
           ),

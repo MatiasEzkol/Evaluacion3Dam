@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart'; 
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/material.dart';
 import '../../services/firestore_service.dart';
 
 class RegistroNoticiasPage extends StatefulWidget {
@@ -68,8 +69,20 @@ class _RegistroNoticiasPageState extends State<RegistroNoticiasPage> {
                 child: ElevatedButton(
                     child: Text('Agregar Nueva Noticia'),
                     onPressed: () async {
-                      await FirestoreService().noticiasAgregar(
-                          tituloCtrl.text.trim(), descripcionCtrl.text.trim());
+                      await FirestoreService()
+                          .noticiasAgregar(tituloCtrl.text.trim(),
+                              descripcionCtrl.text.trim())
+                          .then((value) => {
+                                tituloCtrl.clear(),
+                                descripcionCtrl.clear(),
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.SUCCES,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  title: 'Noticia creada con exito :D',
+                                  autoHide: Duration(seconds: 2),
+                                )..show()
+                              });
                     },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
