@@ -6,10 +6,9 @@ class FirestoreService {
   }
 
 //agregar noticias
-  Future noticiasAgregar(String tituloId, String nombre, String descripcion) {
+  Future noticiasAgregar(String tituloId, String descripcion) {
     return FirebaseFirestore.instance.collection('noticias').doc().set({
       'titulo': tituloId,
-      'nombre': nombre,
       'descripcion': descripcion,
     });
   }

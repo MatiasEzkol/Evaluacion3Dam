@@ -2,11 +2,15 @@
 
 import 'dart:developer';
 
-import 'package:chipidei/pages/noticias/noticias_editar.dart';
+import 'package:chipidei/pages/home_page.dart';
 import 'package:chipidei/services/firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../usuario/login_page.dart';
 
 class NoticiasPage extends StatefulWidget {
   NoticiasPage({Key? key}) : super(key: key);
@@ -16,19 +20,32 @@ class NoticiasPage extends StatefulWidget {
 }
 
 class _NoticiasPageState extends State<NoticiasPage> {
+  String error = '';
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: TextButton(
-              onPressed: () {},
-              child: Text("Autenticarse"),
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      Color.fromARGB(255, 81, 3, 82))),
+          Container(
+            margin: EdgeInsets.all(8),
+            child: Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: TextButton(
+                onPressed: () {
+                  MaterialPageRoute route = MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  );
+                  Navigator.push(context, route).then((value) {
+                    setState(() {});
+                  });
+                },
+                child: Text("Autenticarse"),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 81, 3, 82))),
+              ),
             ),
           ),
         ],
@@ -102,11 +119,14 @@ class _NoticiasPageState extends State<NoticiasPage> {
                 'Este es el subtitulo del card. Aqui podemos colocar descripción de este card.'),
             leading: Icon(Icons.home),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(onPressed: () => {}, child: Text('Cerrar'))
-            ],
+          Container(
+            margin: EdgeInsets.all(3),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FlatButton(onPressed: () => {}, child: Text('Cerrar'))
+              ],
+            ),
           )
         ],
       ),
