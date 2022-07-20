@@ -12,11 +12,10 @@ class RegistroNoticiasPage extends StatefulWidget {
 class _RegistroNoticiasPageState extends State<RegistroNoticiasPage> {
   final formKey = GlobalKey<FormState>();
   TextEditingController tituloCtrl = TextEditingController();
-  TextEditingController nombreCtrl = TextEditingController();
   TextEditingController descripcionCtrl = TextEditingController();
 
   String errTitulo = '';
-  String errNombre = '';
+
   String errDescripcion = '';
 
   @override
@@ -71,9 +70,7 @@ class _RegistroNoticiasPageState extends State<RegistroNoticiasPage> {
                     child: Text('Agregar Nueva Noticia'),
                     onPressed: () async {
                       await FirestoreService().noticiasAgregar(
-                          tituloCtrl.text.trim(),
-                          nombreCtrl.text.trim(),
-                          descripcionCtrl.text.trim());
+                          tituloCtrl.text.trim(), descripcionCtrl.text.trim());
                     },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
