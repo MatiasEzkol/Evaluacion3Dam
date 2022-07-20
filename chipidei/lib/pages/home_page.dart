@@ -12,6 +12,7 @@ import 'package:chipidei/pages/usuario/login_page.dart';
 import 'package:chipidei/widgets/panel_user_email.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 onSelected: (opcion) async {
                   if (opcion == 'logout') {
                     await FirebaseAuth.instance.signOut();
-
+                    await GoogleSignIn().signOut();
                     SharedPreferences sp =
                         await SharedPreferences.getInstance();
                     sp.remove('userEmail');
