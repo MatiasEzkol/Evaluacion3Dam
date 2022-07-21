@@ -45,6 +45,11 @@ class _NoticiasPageState extends State<NoticiasPage> {
                         idToken: googleAuth?.idToken);
                     UserCredential userCredential = await FirebaseAuth.instance
                         .signInWithCredential(credential);
+                    log('${userCredential.user?.displayName}');
+                    SharedPreferences sp =
+                        await SharedPreferences.getInstance();
+                        
+                    sp.setString('user', '${userCredential.user?.displayName}');
                   } catch (e) {
                     log(e.toString());
                   }

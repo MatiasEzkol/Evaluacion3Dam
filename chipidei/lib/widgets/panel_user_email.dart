@@ -1,4 +1,4 @@
-import 'package:chipidei/utils/getUserEmail.dart';
+import 'package:chipidei/utils/getUser.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,7 +18,7 @@ class PanelUserEmail extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           FutureBuilder(
-              future: getUserEmail(),
+              future: getUser(),
               builder: (context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) {
                   return Text('...');

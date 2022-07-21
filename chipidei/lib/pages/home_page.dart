@@ -10,6 +10,7 @@ import 'package:chipidei/forms/nino_form.dart';
 import 'package:chipidei/forms/nivel_form.dart';
 import 'package:chipidei/pages/noticias/gestion_noticias_page.dart';
 import 'package:chipidei/pages/usuario/login_page.dart';
+import 'package:chipidei/utils/getUser.dart';
 import 'package:chipidei/widgets/panel_user_email.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String usuario = '';
+
   @override
   Widget build(BuildContext context) {
     final ButtonStyle styleboton = ButtonStyle(
@@ -48,13 +51,28 @@ class _HomePageState extends State<HomePage> {
         home: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromARGB(255, 231, 98, 231),
-            title: Text(
-              'Bienvenidos al Jardin CHIPIDEI',
-              style: TextStyle(color: Colors.white),
+            title: Row(
+              children: [
+                Text(
+                  'Bienvenido ',
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                FutureBuilder(
+                    future: getUser(),
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if (!snapshot.hasData) {
+                        return Text('al jardín Chipidei');
+                      }
+                      return Text(
+                        snapshot.data,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      );
+                    })
+              ],
             ),
             leading: Icon(
-              MdiIcons.firebase,
-              color: Colors.amber,
+              MdiIcons.humanMaleFemaleChild,
+              color: Color.fromARGB(255, 255, 203, 244),
             ),
             actions: [
               PopupMenuButton(
